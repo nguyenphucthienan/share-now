@@ -1,0 +1,21 @@
+.flex-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.brand-logo {
+  margin-left: 15px;
+}
+
+.navbar-fixed { 
+  z-index: 9999;
+}
+
+.pointer-cursor {
+  cursor: pointer;
+}
