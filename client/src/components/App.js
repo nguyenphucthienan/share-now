@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchUser } from '../actions';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -7,6 +9,10 @@ import About from './About';
 import Landing from './Landing';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
   render() {
     return (
       <div>
@@ -27,4 +33,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, { fetchUser })(App);
