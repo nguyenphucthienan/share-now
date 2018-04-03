@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 require('./models/User');
+require('./models/Post');
 require('./services/passportGoogleOAuth');
 const routes = require('./routes');
 const config = require('./config');
