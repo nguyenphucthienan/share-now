@@ -1,0 +1,29 @@
+{
+  "name": "aseproject",
+  "version": "1.0.0",
+  "description": "**Class:** SE214.I21  \r **Lecturer:** MS. Nguyễn Công Hoan  \r **Project:** Web Application for sharing hilarious Teacher Test Comments  \r **Seminar Topic:** Progressive Web Apps (PWAs)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "dev": "npm run server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nguyenphucthienan/ASEProject.git"
+  },
+  "author": "Nguyen Phuc Thien An",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nguyenphucthienan/ASEProject/issues"
+  },
+  "homepage": "https://github.com/nguyenphucthienan/ASEProject#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.12"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
+}
