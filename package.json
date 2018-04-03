@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
-    "dev": "npm run server"
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "passport-google-oauth20": "^1.0.0"
   },
   "devDependencies": {
+    "concurrently": "^3.5.1",
     "nodemon": "^1.17.3"
   }
 }
