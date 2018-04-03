@@ -19,3 +19,8 @@ main {
 .pointer-cursor {
   cursor: pointer;
 }
+
+.stack-list {
+  display: inline-block;
+  text-align: left;
+}
