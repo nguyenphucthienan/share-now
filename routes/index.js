@@ -1,22 +1,26 @@
 const express = require('express');
 const router = express.Router();
 
-const authControllers = require('../controllers/authController');
+const authController = require('../controllers/authController');
+const postController = require('../controllers/postController');
+const requireLogin = require('../middlewares/requireLogin');
 
 router.get('/', (req, res) => {
   res.send({ hi: 'there' });
 });
 
-router.get('/login/google', authControllers.googleLogin);
+router.get('/login/google', authController.googleLogin);
 
 router.get(
   '/login/google/callback',
-  authControllers.googleLoginCallback,
-  authControllers.googleCallback
+  authController.googleLoginCallback,
+  authController.googleCallback
 );
 
-router.get('/logout', authControllers.logout);
+router.get('/logout', authController.logout);
+router.get('/me', authController.currentUser);
 
-router.get('/me', authControllers.currentUser);
+router.get('/posts', postController.getPosts);
+router.post('/posts', requireLogin, postController.createPost);
 
 module.exports = router;
