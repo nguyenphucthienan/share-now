@@ -14,7 +14,7 @@ class Dashboard extends Component {
       <div className="fixed-action-btn">
         <Link
           to="/posts/new"
-          className="waves-effect waves-light btn btn-floating btn-large red darken-2 pulse"
+          className="waves-effect waves-light btn btn-floating btn-large indigo darken-2 pulse"
         >
           <i className="material-icons">add</i>
         </Link>

@@ -22,7 +22,7 @@ class PostNew extends Component {
       <div className="fixed-action-btn">
         <a
           onClick={() => this.props.history.goBack()}
-          className="waves-effect waves-light btn btn-floating btn-large red darken-2 pulse"
+          className="waves-effect waves-light btn btn-floating btn-large indigo darken-2 pulse"
         >
           <i className="material-icons">arrow_back</i>
         </a>
@@ -58,7 +58,7 @@ class PostNew extends Component {
                 />
                 <div className="row center-align">
                   <div className="col s12">
-                    <button type="submit" className="btn green darken-1 center-align">
+                    <button type="submit" className="btn green accent-4 center-align">
                       <i className="material-icons left">done</i>Post
                     </button>
                   </div>

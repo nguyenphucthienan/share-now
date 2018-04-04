@@ -23,7 +23,7 @@ class Header extends Component {
       <header>
         <div className="navbar-fixed">
           <nav className="transparent-fixed">
-            <div className="nav-wrapper blue darken-2">
+            <div className="nav-wrapper blue darken-1">
               <Link to="/" className="brand-logo">
                 <i className="material-icons">face</i>ShareNow
               </Link>
