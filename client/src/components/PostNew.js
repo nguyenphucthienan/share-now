@@ -14,7 +14,7 @@ class PostNew extends Component {
 
   async createPost(values) {
     await axios.post('/api/posts', values);
-    this.props.history.push('/posts');
+    this.props.history.push('/dashboard');
   }
 
   renderBackButton() {
@@ -58,7 +58,7 @@ class PostNew extends Component {
                 />
                 <div className="row center-align">
                   <div className="col s12">
-                    <button type="submit" className="btn green accent-4 center-align">
+                    <button type="submit" className="btn green accent-3 center-align">
                       <i className="material-icons left">done</i>Post
                     </button>
                   </div>
