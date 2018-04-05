@@ -9,6 +9,7 @@ import About from './About';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
 import PostNew from './PostNew';
+import PostDetail from './PostDetail';
 
 class App extends Component {
   componentDidMount() {
@@ -27,6 +28,7 @@ class App extends Component {
                 <Route exact path="/about" component={About} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/posts/new" component={PostNew} />
+                <Route exact path="/posts/:id" component={PostDetail} />
               </Switch>
             </main>
             <Footer />

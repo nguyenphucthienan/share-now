@@ -24,3 +24,12 @@ main {
   display: inline-block;
   text-align: left;
 }
+
+.image-detail {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.card-content-title {
+  font-weight: bold;
+}
