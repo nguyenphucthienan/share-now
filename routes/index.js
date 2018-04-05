@@ -3,6 +3,7 @@ const router = express.Router();
 
 const authController = require('../controllers/authController');
 const postController = require('../controllers/postController');
+const commentController = require('../controllers/commentController');
 const requireLogin = require('../middlewares/requireLogin');
 
 router.get('/', (req, res) => {
@@ -21,8 +22,20 @@ router.get('/logout', authController.logout);
 router.get('/me', authController.currentUser);
 
 router.get('/posts', postController.getPosts);
-router.post('/posts', requireLogin, postController.createPost);
 
-router.get('/posts/:id', postController.getPost);
+router.post(
+  '/posts',
+  requireLogin,
+  postController.createPost
+);
+
+router.get('/posts/:postId', postController.getPost);
+router.get('/posts/:postId/comments', commentController.getComments);
+
+router.post(
+  '/posts/:postId/comments',
+  requireLogin,
+  commentController.createComment
+);
 
 module.exports = router;

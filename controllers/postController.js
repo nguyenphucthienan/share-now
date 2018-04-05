@@ -23,10 +23,12 @@ exports.getPosts = async (req, res) => {
 };
 
 exports.getPost = async (req, res) => {
+  const { postId } = req.params;
+
   try {
     const post = await Post
       .findOne({
-        _id: req.params.id
+        _id: postId
       })
       .populate('author', '_id email displayName');
 
@@ -37,10 +39,11 @@ exports.getPost = async (req, res) => {
 };
 
 exports.createPost = async (req, res) => {
+  const { id: userId } = req.user;
   const { image, title, content } = req.body;
 
   const post = new Post({
-    author: req.user.id,
+    author: userId,
     image,
     title,
     content
