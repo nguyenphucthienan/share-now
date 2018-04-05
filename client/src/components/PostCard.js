@@ -11,7 +11,7 @@ class PostCard extends Component {
     } = this.props.post;
 
     return (
-      <div className="col s12 m6">
+      <div className="col s12 m6 l4">
         <div className="card">
           <div className="card-image">
             <img src={image} alt={title} />

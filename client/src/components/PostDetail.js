@@ -32,14 +32,14 @@ class PostDetail extends Component {
       return (
         <div className="container">
           <div className="row">
-            <div className="col s12">
+            <div className="col s12 m8 offset-m2 l6 offset-l3">
               <div className="row">
                 <div className="col s12">
                   <h4 className="center-align">{title}</h4>
                 </div>
               </div>
               <div className="card row">
-                <div className="col s12 image-detail">
+                <div className="col s12 center-align image-detail">
                   <img className="responsive-img" src={image} alt={title} />
                   <a className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">favorite</i></a>
                 </div>
