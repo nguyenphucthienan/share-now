@@ -23,4 +23,6 @@ router.get('/me', authController.currentUser);
 router.get('/posts', postController.getPosts);
 router.post('/posts', requireLogin, postController.createPost);
 
+router.get('/posts/:id', postController.getPost);
+
 module.exports = router;

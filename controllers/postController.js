@@ -22,6 +22,20 @@ exports.getPosts = async (req, res) => {
   }
 };
 
+exports.getPost = async (req, res) => {
+  try {
+    const post = await Post
+      .findOne({
+        _id: req.params.id
+      })
+      .populate('author', '_id email displayName');
+
+    return res.send(post);
+  } catch (err) {
+    return res.status(422).send(err);
+  }
+};
+
 exports.createPost = async (req, res) => {
   const { image, title, content } = req.body;
 
