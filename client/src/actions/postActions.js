@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {
   FETCH_POSTS,
-  FETCH_POST
+  FETCH_POST,
+  CLEAR_POST
 } from './types';
 
 export const fetchPosts = () => async (dispatch) => {
@@ -23,3 +24,7 @@ export const fetchPost = postId => async (dispatch) => {
     dispatch({ type: FETCH_POST, payload: null });
   }
 };
+
+export const clearPost = () => ({
+  type: CLEAR_POST
+});

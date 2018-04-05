@@ -2,16 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import config from '../config';
-import { fetchPost } from '../actions';
+import { fetchPost, clearPost, fetchComments, clearComments } from '../actions';
 
 import CommentList from './CommentList';
 
 class PostDetail extends Component {
-  async componentDidMount() {
+  componentDidMount() {
     document.title = `${config.appName} – Post`;
 
     const postId = this.props.match.params.id;
     this.props.fetchPost(postId);
+    this.props.fetchComments(postId);
+  }
+
+  componentWillUnmount() {
+    this.props.clearPost();
+    this.props.clearComments();
   }
 
   renderBackButton() {
@@ -77,4 +83,9 @@ function mapStateToProps({ post }) {
   return { post };
 }
 
-export default connect(mapStateToProps, { fetchPost })(withRouter(PostDetail));
+export default connect(mapStateToProps, {
+  fetchPost,
+  clearPost,
+  fetchComments,
+  clearComments
+})(withRouter(PostDetail));

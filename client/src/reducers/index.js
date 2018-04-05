@@ -10,6 +10,6 @@ export default combineReducers({
   user: userReducer,
   posts: postsReducer,
   post: postReducer,
-  comment: commentsReducer,
+  comments: commentsReducer,
   form: reduxForm
 });

@@ -1,5 +1,8 @@
 import axios from 'axios';
-import { FETCH_COMMENTS } from './types';
+import {
+  FETCH_COMMENTS,
+  CLEAR_COMMENTS
+} from './types';
 
 export const fetchComments = postId => async (dispatch) => {
   try {
@@ -10,3 +13,7 @@ export const fetchComments = postId => async (dispatch) => {
     dispatch({ type: FETCH_COMMENTS, payload: [] });
   }
 };
+
+export const clearComments = () => ({
+  type: CLEAR_COMMENTS
+});
