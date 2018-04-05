@@ -4,10 +4,14 @@ import { withRouter } from 'react-router-dom';
 import config from '../config';
 import { fetchPost } from '../actions';
 
+import CommentList from './CommentList';
+
 class PostDetail extends Component {
   async componentDidMount() {
     document.title = `${config.appName} – Post`;
-    this.props.fetchPost(this.props.match.params.id);
+
+    const postId = this.props.match.params.id;
+    this.props.fetchPost(postId);
   }
 
   renderBackButton() {
@@ -26,7 +30,8 @@ class PostDetail extends Component {
   render() {
     if (this.props.post) {
       const {
-        image, title, content, comments, hearts
+        _id: postId,
+        image, title, content, hearts
       } = this.props.post;
 
       return (
@@ -56,14 +61,7 @@ class PostDetail extends Component {
                   </p>
                 </div>
               </div>
-              <div className="card row">
-                <div className="col s12">
-                  <p>
-                    <span className="card-content-title">Comments: </span>
-                    <span>{comments.length || 0}</span>
-                  </p>
-                </div>
-              </div>
+              <CommentList postId={postId} />
               {this.renderBackButton()}
             </div>
           </div>
