@@ -10,7 +10,7 @@ exports.getComments = async (req, res) => {
         postId
       })
       .sort({
-        createdAt: -1
+        createdAt: 1
       })
       .populate('author', '_id email displayName');
 

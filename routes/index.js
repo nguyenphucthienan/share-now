@@ -38,4 +38,10 @@ router.post(
   commentController.createComment
 );
 
+router.post(
+  '/posts/:postId/heart',
+  requireLogin,
+  postController.heartPost
+);
+
 module.exports = router;

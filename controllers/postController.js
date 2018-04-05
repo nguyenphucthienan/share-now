@@ -56,3 +56,29 @@ exports.createPost = async (req, res) => {
     return res.status(422).send(err);
   }
 };
+
+exports.heartPost = async (req, res) => {
+  const { postId } = req.params;
+  const { id: userId } = req.user;
+
+  try {
+    const post = await Post.findById(postId);
+
+    if (!post) {
+      return res.status(404).send({ message: 'Post not found' });
+    }
+
+    const hearts = post.hearts.map(obj => obj.toString());
+    const operator = hearts.includes(userId) ? '$pull' : '$addToSet';
+
+    const returnPost = await Post.findByIdAndUpdate(
+      post.id,
+      { [operator]: { hearts: userId } },
+      { new: true }
+    );
+
+    return res.send(returnPost);
+  } catch (err) {
+    return res.status(422).send(err);
+  }
+};
