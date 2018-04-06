@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import config from '../config';
 
 import PostList from './PostList';
+import PostPagination from './PostPagination';
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -27,6 +28,7 @@ class Dashboard extends Component {
       <div className="container">
         <h2 className="center-align">Dashboard</h2>
         <PostList />
+        <PostPagination />
         {this.renderNewButton()}
       </div>
     );
