@@ -6,7 +6,8 @@ exports.getPosts = async (req, res) => {
   const offset = parseInt(req.query.offset, 10) || 5;
 
   try {
-    const posts = await Post
+    const countPromise = Post.count({});
+    const postsPromise = Post
       .find({})
       .sort({
         createdAt: -1
@@ -16,7 +17,17 @@ exports.getPosts = async (req, res) => {
       .limit(offset)
       .exec();
 
-    return res.send(posts);
+    const data = await Promise.all([
+      countPromise,
+      postsPromise
+    ]);
+
+    const returnData = {
+      totalPosts: data[0],
+      postsData: data[1]
+    };
+
+    return res.send(returnData);
   } catch (err) {
     return res.status(422).send(err);
   }
