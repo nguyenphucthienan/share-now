@@ -29,9 +29,13 @@ class PostCard extends Component {
       });
     }
 
-    const { _id: postId } = this.props.post;
-    await axios.post(`/api/posts/${postId}/heart`, null);
-    await this.props.fetchPosts();
+    try {
+      const { _id: postId } = this.props.post;
+      await axios.post(`/api/posts/${postId}/heart`, null);
+      await this.props.fetchPosts();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {

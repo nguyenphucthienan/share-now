@@ -5,13 +5,13 @@ import {
   CLEAR_POST
 } from './types';
 
-export const fetchPosts = () => async (dispatch) => {
+export const fetchPosts = (page = 1, offset = 6) => async (dispatch) => {
   try {
-    const res = await axios.get('/api/posts');
+    const res = await axios.get(`/api/posts?page=${page}&offset=${offset}`);
 
     dispatch({ type: FETCH_POSTS, payload: res.data });
   } catch (err) {
-    dispatch({ type: FETCH_POSTS, payload: [] });
+    console.log(err);
   }
 };
 
@@ -21,7 +21,7 @@ export const fetchPost = postId => async (dispatch) => {
 
     dispatch({ type: FETCH_POST, payload: res.data });
   } catch (err) {
-    dispatch({ type: FETCH_POST, payload: null });
+    console.log(err);
   }
 };
 

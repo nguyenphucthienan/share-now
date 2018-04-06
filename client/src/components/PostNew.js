@@ -13,8 +13,12 @@ class PostNew extends Component {
   }
 
   async createPost(values) {
-    await axios.post('/api/posts', values);
-    this.props.history.push('/dashboard');
+    try {
+      await axios.post('/api/posts', values);
+      this.props.history.push('/dashboard');
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   renderBackButton() {

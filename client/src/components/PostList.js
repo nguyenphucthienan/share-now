@@ -10,8 +10,8 @@ class PostList extends Component {
   }
 
   renderPosts() {
-    if (this.props.posts) {
-      return this.props.posts.map(post => (
+    if (this.props.posts && this.props.posts.postsData) {
+      return this.props.posts.postsData.map(post => (
         <PostCard
           key={post._id}
           post={post}

@@ -10,7 +10,7 @@ export const fetchComments = postId => async (dispatch) => {
 
     dispatch({ type: FETCH_COMMENTS, payload: res.data });
   } catch (err) {
-    dispatch({ type: FETCH_COMMENTS, payload: [] });
+    console.log(err);
   }
 };
 

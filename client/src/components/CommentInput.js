@@ -9,8 +9,14 @@ import TextAreaField from './TextAreaField';
 class CommentInput extends Component {
   async createComment(values) {
     const { postId } = this.props;
-    await axios.post(`/api/posts/${postId}/comments`, values);
-    this.props.reset();
+
+    try {
+      await axios.post(`/api/posts/${postId}/comments`, values);
+      this.props.reset();
+    } catch (err) {
+      console.log(err);
+    }
+
     await this.props.fetchComments(postId);
   }
 
