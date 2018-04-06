@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
+import { fetchPosts } from '../actions';
 
 class PostCard extends Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class PostCard extends Component {
 
     const { _id: postId } = this.props.post;
     await axios.post(`/api/posts/${postId}/heart`, null);
+    await this.props.fetchPosts();
   }
 
   render() {
@@ -53,7 +55,8 @@ class PostCard extends Component {
               className={`btn-floating halfway-fab waves-effect waves-light ${heartColor}`}
               onClick={() => this.heartOrUnheartPost()}
             >
-              <i className="material-icons">favorite</i></a>
+              <i className="material-icons">favorite</i>
+            </a>
           </div>
           <div className="card-content">
             <p>
@@ -71,4 +74,4 @@ function mapStateToProps({ user }) {
   return { user };
 }
 
-export default connect(mapStateToProps)(withRouter(PostCard));
+export default connect(mapStateToProps, { fetchPosts })(withRouter(PostCard));
