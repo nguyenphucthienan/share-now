@@ -23,7 +23,8 @@ exports.getPosts = async (req, res) => {
     ]);
 
     const returnData = {
-      totalPosts: data[0],
+      totalPages: Math.ceil(data[0] / offset),
+      page: page + 1,
       postsData: data[1]
     };
 
