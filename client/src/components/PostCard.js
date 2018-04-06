@@ -51,9 +51,9 @@ class PostCard extends Component {
       <div className="col s12 m6 l4">
         <div className="card">
           <div className="card-image">
-            <img src={image} alt={title} />
+            <img className="image-cover" src={image} alt={title} />
             <Link to={`/posts/${postId}`}>
-              <span className="card-title">{title}</span>
+              <span className="card-title dark-background">{title}</span>
             </Link>
             <a
               className={`btn-floating halfway-fab waves-effect waves-light ${heartColor}`}
