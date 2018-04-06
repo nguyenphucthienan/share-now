@@ -10,8 +10,8 @@ class PostList extends Component {
   }
 
   renderPosts() {
-    if (this.props.posts && this.props.posts.postsData) {
-      return this.props.posts.postsData.map(post => (
+    if (this.props.postsData) {
+      return this.props.postsData.map(post => (
         <PostCard
           key={post._id}
           post={post}
@@ -33,8 +33,8 @@ class PostList extends Component {
   }
 }
 
-function mapStateToProps({ posts }) {
-  return { posts };
+function mapStateToProps({ posts: { postsData } }) {
+  return { postsData };
 }
 
 export default connect(mapStateToProps, { fetchPosts })(PostList);

@@ -3,33 +3,53 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../actions';
 
 class PostPagination extends Component {
-  renderPageButtons(totalPosts, postsPerPage) {
-    const totalPages = Math.ceil(totalPosts / postsPerPage);
-
+  renderPageButtons(totalPages) {
+    const currentPage = this.props.page;
+    const isFirstPage = currentPage === 1;
+    const isLastPage = currentPage === totalPages;
     const buttons = [];
+
+    buttons.push((
+      <li
+        key="previous"
+        className={`${isFirstPage ? 'disabled' : 'waves-effect'}`}
+        onClick={isFirstPage ? () => { } : () => this.props.fetchPosts(currentPage - 1)}
+      >
+        <a><i className="material-icons">chevron_left</i></a>
+      </li>
+    ));
+
     for (let i = 1; i <= totalPages; i += 1) {
       buttons.push((
         <li
           key={i}
-          className="waves-effect"
-          onClick={() => this.props.fetchPosts(i, postsPerPage)}
+          className={`waves-effect ${currentPage === i ? 'active blue darken-1' : ''}`}
+          onClick={() => this.props.fetchPosts(i)}
         >
-          <a href="#!">{i}</a>
-        </li>
+          <a>{i}</a>
+        </li >
       ));
     }
+
+    buttons.push((
+      <li
+        key="next"
+        className={`${isLastPage ? 'disabled' : 'waves-effect'}`}
+        onClick={isLastPage ? () => { } : () => this.props.fetchPosts(currentPage + 1)}
+      >
+        <a><i className="material-icons">chevron_right</i></a>
+      </li>
+    ));
 
     return buttons;
   }
 
   render() {
-    if (this.props.totalPosts) {
+    if (this.props.totalPages) {
       return (
         <div className="container center-align">
           <ul className="pagination">
-            <li className="waves-effect"><a href="#!"><i className="material-icons">chevron_left</i></a></li>
-            {this.renderPageButtons(this.props.totalPosts, 6)}
-            <li className="waves-effect"><a href="#!"><i className="material-icons">chevron_right</i></a></li>
+            {this.renderPageButtons(this.props.totalPages)}
           </ul>
         </div>
       );
@@ -39,8 +59,8 @@ class PostPagination extends Component {
   }
 }
 
-function mapStateToProps({ posts: { totalPosts } }) {
-  return { totalPosts };
+function mapStateToProps({ posts: { totalPages, page } }) {
+  return { totalPages, page };
 }
 
 export default connect(mapStateToProps, { fetchPosts })(PostPagination);
