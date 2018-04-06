@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions';
 
@@ -10,6 +10,7 @@ import Landing from './Landing';
 import Dashboard from './Dashboard';
 import PostNew from './PostNew';
 import PostDetail from './PostDetail';
+import NotFound from './NotFound';
 
 class App extends Component {
   componentDidMount() {
@@ -29,6 +30,8 @@ class App extends Component {
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/posts/new" component={PostNew} />
                 <Route exact path="/posts/:id" component={PostDetail} />
+                <Route exact path="/404" component={NotFound} />
+                <Redirect from="*" to="/404" />
               </Switch>
             </main>
             <Footer />
