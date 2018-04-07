@@ -15,8 +15,9 @@ class PostNew extends Component {
 
   async createPost(values) {
     try {
-      await axios.post('/api/posts', values);
-      this.props.history.push('/dashboard');
+      const response = await axios.post('/api/posts', values);
+      const { data: { _id: postId } } = response;
+      this.props.history.push(`/posts/${postId}`);
     } catch (err) {
       console.log(err);
     }
