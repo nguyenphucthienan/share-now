@@ -79,7 +79,10 @@ class PostDetail extends Component {
   }
 
   renderDeleteButton() {
-    if (this.props.user) {
+    const { _id: userId } = this.props.user;
+    const { _id: authorId } = this.props.post.author;
+
+    if (userId && userId === authorId) {
       return (
         <button type="button" className="btn-floating halfway-fab btn waves-effect waves-light red center-align">
           <i className="material-icons left">delete_forever</i>Delete
