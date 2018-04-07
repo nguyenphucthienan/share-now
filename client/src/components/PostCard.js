@@ -32,7 +32,7 @@ class PostCard extends Component {
     try {
       const { _id: postId } = this.props.post;
       await axios.post(`/api/posts/${postId}/heart`, null);
-      await this.props.fetchPosts();
+      await this.props.fetchPosts(this.props.page);
     } catch (err) {
       console.log(err);
     }
@@ -45,7 +45,7 @@ class PostCard extends Component {
       title
     } = this.props.post;
 
-    const heartColor = this.state.isPostHearted ? 'red' : 'grey darken-2';
+    const heartColor = this.state.isPostHearted ? 'pink lighten-1' : 'grey darken-2';
 
     return (
       <div className="col s12 m6 l4">
@@ -74,8 +74,8 @@ class PostCard extends Component {
   }
 }
 
-function mapStateToProps({ user }) {
-  return { user };
+function mapStateToProps({ user, posts: { page } }) {
+  return { user, page };
 }
 
 export default connect(mapStateToProps, { fetchPosts })(withRouter(PostCard));

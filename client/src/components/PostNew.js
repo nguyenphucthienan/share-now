@@ -26,7 +26,7 @@ class PostNew extends Component {
     return (
       <div className="fixed-action-btn">
         <a
-          onClick={() => this.props.history.push(`/dashboard`)}
+          onClick={() => this.props.history.push('/dashboard')}
           className="waves-effect waves-light btn btn-floating btn-large indigo darken-2 pulse"
         >
           <i className="material-icons">arrow_back</i>
@@ -63,7 +63,7 @@ class PostNew extends Component {
                 />
                 <div className="row center-align">
                   <div className="col s12">
-                    <button type="submit" className="btn green accent-3 center-align">
+                    <button type="submit" className="btn waves-effect waves-light green accent-3 center-align">
                       <i className="material-icons left">done</i>Post
                     </button>
                   </div>

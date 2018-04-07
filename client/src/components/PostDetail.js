@@ -55,7 +55,7 @@ class PostDetail extends Component {
     try {
       const { _id: postId } = this.props.post;
       await axios.post(`/api/posts/${postId}/heart`, null);
-      await this.props.fetchPosts();
+      await this.props.fetchPosts(this.props.page);
     } catch (err) {
       console.log(err);
     }
@@ -81,7 +81,7 @@ class PostDetail extends Component {
         image, title, content
       } = this.props.post;
 
-      const heartColor = this.state.isPostHearted ? 'red' : 'grey darken-2';
+      const heartColor = this.state.isPostHearted ? 'pink lighten-1' : 'grey darken-2';
 
       return (
         <div className="container">
@@ -113,6 +113,13 @@ class PostDetail extends Component {
                     <span className="card-content-title">Content: </span>
                     <span>{content}</span>
                   </p>
+                  <div className="row">
+                    <div className="col s12">
+                      <button type="button" className="btn-floating halfway-fab btn waves-effect waves-light red center-align">
+                        <i className="material-icons left">delete_forever</i>Delete
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
               <CommentList postId={postId} />
@@ -127,8 +134,8 @@ class PostDetail extends Component {
   }
 }
 
-function mapStateToProps({ user, post }) {
-  return { user, post };
+function mapStateToProps({ user, posts: { page }, post, }) {
+  return { user, page, post };
 }
 
 export default connect(mapStateToProps, {

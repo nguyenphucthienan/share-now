@@ -31,7 +31,7 @@ class CommentInput extends Component {
             component={TextAreaField}
           />
           <div className="right">
-            <button type="submit" className="btn green accent-3 center-align">
+            <button type="submit" className="btn waves-effect waves-light green accent-3 center-align">
               <i className="material-icons left">done</i>Comment
             </button>
           </div>
