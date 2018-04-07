@@ -38,14 +38,29 @@ class PostCard extends Component {
     }
   }
 
+  renderHeartButton() {
+    if (this.props.user) {
+      const heartColor = this.state.isPostHearted ? 'pink lighten-1' : 'grey darken-2';
+
+      return (
+        <a
+          className={`btn-floating halfway-fab waves-effect waves-light ${heartColor}`}
+          onClick={() => this.heartOrUnheartPost()}
+        >
+          <i className="material-icons">favorite</i>
+        </a >
+      );
+    }
+
+    return <div />;
+  }
+
   render() {
     const {
       _id: postId,
       image,
       title
     } = this.props.post;
-
-    const heartColor = this.state.isPostHearted ? 'pink lighten-1' : 'grey darken-2';
 
     return (
       <div className="col s12 m6 l4">
@@ -55,12 +70,7 @@ class PostCard extends Component {
             <Link to={`/posts/${postId}`}>
               <span className="card-title dark-background">{title}</span>
             </Link>
-            <a
-              className={`btn-floating halfway-fab waves-effect waves-light ${heartColor}`}
-              onClick={() => this.heartOrUnheartPost()}
-            >
-              <i className="material-icons">favorite</i>
-            </a>
+            {this.renderHeartButton()}
           </div>
           <div className="card-content">
             <p>

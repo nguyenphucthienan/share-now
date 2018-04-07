@@ -61,6 +61,35 @@ class PostDetail extends Component {
     }
   }
 
+  renderHeartButton() {
+    if (this.props.user) {
+      const heartColor = this.state.isPostHearted ? 'pink lighten-1' : 'grey darken-2';
+
+      return (
+        <a
+          className={`btn-floating halfway-fab waves-effect waves-light ${heartColor}`}
+          onClick={() => this.heartOrUnheartPost()}
+        >
+          <i className="material-icons">favorite</i>
+        </a >
+      );
+    }
+
+    return <div />;
+  }
+
+  renderDeleteButton() {
+    if (this.props.user) {
+      return (
+        <button type="button" className="btn-floating halfway-fab btn waves-effect waves-light red center-align">
+          <i className="material-icons left">delete_forever</i>Delete
+        </button>
+      );
+    }
+
+    return <div />;
+  }
+
   renderBackButton() {
     return (
       <div className="fixed-action-btn">
@@ -81,8 +110,6 @@ class PostDetail extends Component {
         image, title, content
       } = this.props.post;
 
-      const heartColor = this.state.isPostHearted ? 'pink lighten-1' : 'grey darken-2';
-
       return (
         <div className="container">
           <div className="row">
@@ -95,12 +122,7 @@ class PostDetail extends Component {
               <div className="card row">
                 <div className="col s12 center-align image-detail">
                   <img className="responsive-img" src={image} alt={title} />
-                  <a
-                    className={`btn-floating halfway-fab waves-effect waves-light ${heartColor}`}
-                    onClick={() => this.heartOrUnheartPost()}
-                  >
-                    <i className="material-icons">favorite</i>
-                  </a>
+                  {this.renderHeartButton()}
                 </div>
               </div>
               <div className="card row">
@@ -115,9 +137,7 @@ class PostDetail extends Component {
                   </p>
                   <div className="row">
                     <div className="col s12">
-                      <button type="button" className="btn-floating halfway-fab btn waves-effect waves-light red center-align">
-                        <i className="material-icons left">delete_forever</i>Delete
-                      </button>
+                      {this.renderDeleteButton()}
                     </div>
                   </div>
                 </div>
