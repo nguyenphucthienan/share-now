@@ -30,6 +30,13 @@ router.post(
 );
 
 router.get('/posts/:postId', postController.getPost);
+
+router.delete(
+  '/posts/:postId',
+  requireLogin,
+  postController.deletePost
+);
+
 router.get('/posts/:postId/comments', commentController.getComments);
 
 router.post(

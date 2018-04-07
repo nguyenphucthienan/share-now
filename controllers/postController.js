@@ -69,6 +69,22 @@ exports.createPost = async (req, res) => {
   }
 };
 
+exports.deletePost = async (req, res) => {
+  const { postId } = req.params;
+
+  try {
+    const post = await Post.findByIdAndRemove(postId);
+
+    if (!post) {
+      return res.status(404).send({ message: 'Post not found' });
+    }
+
+    return res.send(post);
+  } catch (err) {
+    return res.status(422).send(err);
+  }
+};
+
 exports.heartPost = async (req, res) => {
   const { postId } = req.params;
   const { id: userId } = req.user;
