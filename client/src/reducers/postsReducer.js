@@ -1,7 +1,8 @@
 import { FETCH_POSTS } from '../actions/types';
 
 const DEFAULT_STATE = {
-  totalPosts: 0,
+  totalPages: 0,
+  page: 1,
   postsData: []
 };
 

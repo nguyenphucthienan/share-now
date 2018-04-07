@@ -6,7 +6,7 @@ import PostCard from './PostCard';
 
 class PostList extends Component {
   componentDidMount() {
-    this.props.fetchPosts();
+    this.props.fetchPosts(this.props.page || 1);
   }
 
   renderPosts() {
@@ -33,8 +33,10 @@ class PostList extends Component {
   }
 }
 
-function mapStateToProps({ posts: { postsData } }) {
-  return { postsData };
+function mapStateToProps({ posts: { page, postsData } }) {
+  return { page, postsData };
 }
 
-export default connect(mapStateToProps, { fetchPosts })(PostList);
+export default connect(mapStateToProps, {
+  fetchPosts
+})(PostList);

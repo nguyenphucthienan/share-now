@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
@@ -25,7 +26,7 @@ class PostNew extends Component {
     return (
       <div className="fixed-action-btn">
         <a
-          onClick={() => this.props.history.goBack()}
+          onClick={() => this.props.history.push(`/dashboard`)}
           className="waves-effect waves-light btn btn-floating btn-large indigo darken-2 pulse"
         >
           <i className="material-icons">arrow_back</i>
@@ -103,7 +104,11 @@ function validate(values) {
   return errors;
 }
 
-export default reduxForm({
+function mapStateToProps({ posts: { page } }) {
+  return { page };
+}
+
+export default connect(mapStateToProps)(reduxForm({
   form: 'postNew',
   validate
-})(withRouter(PostNew));
+})(withRouter(PostNew)));
