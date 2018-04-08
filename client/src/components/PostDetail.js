@@ -10,7 +10,7 @@ import {
   clearComments
 } from '../actions';
 
-import CommentList from './CommentList';
+import CommentSection from './CommentSection';
 
 class PostDetail extends Component {
   constructor(props) {
@@ -151,7 +151,7 @@ class PostDetail extends Component {
                   </div>
                 </div>
               </div>
-              <CommentList postId={postId} />
+              <CommentSection postId={postId} />
               {this.renderBackButton()}
             </div>
           </div>
