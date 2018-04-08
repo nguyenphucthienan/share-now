@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import config from '../config';
 import {
@@ -67,6 +67,16 @@ class PostDetail extends Component {
     }
   }
 
+  async deletePost() {
+    try {
+      const { _id: postId } = this.props.post;
+      await axios.delete(`/api/posts/${postId}`);
+      this.props.history.push('/dashboard');
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   renderHeartButton() {
     if (this.props.user) {
       const heartColor = this.state.isPostHearted ? 'pink lighten-1' : 'grey darken-2';
@@ -90,9 +100,12 @@ class PostDetail extends Component {
 
     if (userId && userId === authorId) {
       return (
-        <button type="button" className="btn-floating halfway-fab btn waves-effect waves-light red center-align">
+        <a
+          className="btn-floating halfway-fab btn waves-effect waves-light red center-align"
+          onClick={() => this.deletePost()}
+        >
           <i className="material-icons left">delete_forever</i>Delete
-        </button>
+        </a>
       );
     }
 
@@ -172,4 +185,4 @@ export default connect(mapStateToProps, {
   clearPost,
   fetchComments,
   clearComments
-})(PostDetail);
+})(withRouter(PostDetail));
