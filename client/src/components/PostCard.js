@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
-import { fetchPosts } from '../actions';
 
 class PostCard extends Component {
   constructor(props) {
@@ -32,7 +31,6 @@ class PostCard extends Component {
     try {
       const { _id: postId } = this.props.post;
       await axios.post(`/api/posts/${postId}/heart`, null);
-      await this.props.fetchPosts(this.props.page);
     } catch (err) {
       console.log(err);
     }
@@ -88,4 +86,4 @@ function mapStateToProps({ user, posts: { page } }) {
   return { user, page };
 }
 
-export default connect(mapStateToProps, { fetchPosts })(withRouter(PostCard));
+export default connect(mapStateToProps)(withRouter(PostCard));

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import config from '../config';
 
@@ -25,14 +25,12 @@ class PostNew extends Component {
 
   renderBackButton() {
     return (
-      <div className="fixed-action-btn">
-        <a
-          onClick={() => this.props.history.push('/dashboard')}
-          className="waves-effect waves-light btn btn-floating btn-large indigo darken-2 pulse"
-        >
-          <i className="material-icons">arrow_back</i>
-        </a>
-      </div>
+      <Link
+        to="/dashboard"
+        className="waves-effect waves-light btn btn-floating btn-large indigo darken-2 pulse"
+      >
+        <i className="material-icons">arrow_back</i>
+      </Link>
     );
   }
 
@@ -112,4 +110,4 @@ function mapStateToProps({ posts: { page } }) {
 export default connect(mapStateToProps)(reduxForm({
   form: 'postNew',
   validate
-})(withRouter(PostNew)));
+})(PostNew));

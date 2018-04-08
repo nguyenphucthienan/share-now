@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import config from '../config';
 import {
-  fetchPosts,
   fetchPost,
   clearPost,
   fetchComments,
@@ -14,6 +13,14 @@ import {
 import CommentList from './CommentList';
 
 class PostDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isPostHearted: false,
+      numOfHearts: 0
+    };
+  }
+
   componentDidMount() {
     document.title = `${config.appName} – Post`;
 
@@ -55,7 +62,6 @@ class PostDetail extends Component {
     try {
       const { _id: postId } = this.props.post;
       await axios.post(`/api/posts/${postId}/heart`, null);
-      await this.props.fetchPosts(this.props.page);
     } catch (err) {
       console.log(err);
     }
@@ -96,12 +102,12 @@ class PostDetail extends Component {
   renderBackButton() {
     return (
       <div className="fixed-action-btn">
-        <a
-          onClick={() => this.props.history.push('/dashboard')}
+        <Link
+          to="/dashboard"
           className="waves-effect waves-light btn btn-floating btn-large indigo darken-2 pulse"
         >
           <i className="material-icons">arrow_back</i>
-        </a>
+        </Link>
       </div>
     );
   }
@@ -162,9 +168,8 @@ function mapStateToProps({ user, posts: { page }, post, }) {
 }
 
 export default connect(mapStateToProps, {
-  fetchPosts,
   fetchPost,
   clearPost,
   fetchComments,
   clearComments
-})(withRouter(PostDetail));
+})(PostDetail);
