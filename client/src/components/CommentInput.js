@@ -21,23 +21,30 @@ class CommentInput extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <form onSubmit={this.props.handleSubmit(values => this.createComment(values))}>
-          <Field
-            type="text"
-            name="content"
-            label="Enter your comment"
-            component={TextAreaField}
-          />
-          <div className="right">
-            <button type="submit" className="btn waves-effect waves-light green accent-3 center-align">
-              <i className="material-icons left">done</i>Comment
-            </button>
+    if (this.props.user) {
+      return (
+        <div className="row">
+          <div className="col s12">
+            <hr />
+            <form onSubmit={this.props.handleSubmit(values => this.createComment(values))}>
+              <Field
+                type="text"
+                name="content"
+                label="Enter your comment"
+                component={TextAreaField}
+              />
+              <div className="right">
+                <button type="submit" className="btn waves-effect waves-light green accent-3 center-align">
+                  <i className="material-icons left">done</i>Comment
+                </button>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
-    );
+        </div>
+      );
+    }
+
+    return <div />;
   }
 }
 
@@ -55,7 +62,11 @@ function validate(values) {
   return errors;
 }
 
-export default connect(null, { fetchComments })(reduxForm({
+function mapStateToProps({ user }) {
+  return { user };
+}
+
+export default connect(mapStateToProps, { fetchComments })(reduxForm({
   form: 'commentInput',
   validate
 })(CommentInput));

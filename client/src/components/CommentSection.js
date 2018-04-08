@@ -19,17 +19,8 @@ class CommentSection extends Component {
               </p>
             </div>
           </div>
-          <div className="row">
-            <div className="col s12">
-              <CommentList comments={comments} />
-            </div>
-          </div>
-          <hr />
-          <div className="row">
-            <div className="col s12">
-              <CommentInput postId={postId} />
-            </div>
-          </div>
+          <CommentList comments={comments} />
+          <CommentInput postId={postId} />
         </div>
       </div>
     );
