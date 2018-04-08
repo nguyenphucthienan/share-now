@@ -25,12 +25,14 @@ class PostNew extends Component {
 
   renderBackButton() {
     return (
-      <Link
-        to="/dashboard"
-        className="waves-effect waves-light btn btn-floating btn-large indigo darken-2 pulse"
-      >
-        <i className="material-icons">arrow_back</i>
-      </Link>
+      <div className="fixed-action-btn">
+        <Link
+          to="/dashboard"
+          className="waves-effect waves-light btn btn-floating btn-large indigo darken-2 pulse"
+        >
+          <i className="material-icons">arrow_back</i>
+        </Link>
+      </div>
     );
   }
 
