@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
-import config from '../config';
+import config from '../../config';
 import {
   fetchPost,
   clearPost,
   fetchComments,
   clearComments
-} from '../actions';
+} from '../../actions';
 
-import CommentSection from './CommentSection';
+import CommentSection from '../comments/CommentSection';
 
 class PostDetail extends Component {
   constructor(props) {

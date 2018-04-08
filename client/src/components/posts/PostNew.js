@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import config from '../config';
+import config from '../../config';
 
-import InputField from './InputField';
-import TextAreaField from './TextAreaField';
+import InputField from '../forms/InputField';
+import TextAreaField from '../forms/TextAreaField';
 
 class PostNew extends Component {
   componentDidMount() {

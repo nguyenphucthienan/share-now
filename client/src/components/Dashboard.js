@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import config from '../config';
 
-import PostList from './PostList';
-import PostPagination from './PostPagination';
+import PostList from './posts/PostList';
+import PostPagination from './posts/PostPagination';
 
 class Dashboard extends Component {
   componentDidMount() {

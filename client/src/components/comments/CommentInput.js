@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import axios from 'axios';
-import { fetchComments } from '../actions';
+import { fetchComments } from '../../actions';
 
-import TextAreaField from './TextAreaField';
+import TextAreaField from '../forms/TextAreaField';
 
 class CommentInput extends Component {
   async createComment(values) {

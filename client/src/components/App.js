@@ -3,13 +3,13 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions';
 
-import Header from './Header';
-import Footer from './Footer';
+import Header from './partials/Header';
+import Footer from './partials/Footer';
 import About from './About';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
-import PostNew from './PostNew';
-import PostDetail from './PostDetail';
+import PostNew from './posts/PostNew';
+import PostDetail from './posts/PostDetail';
 import NotFound from './NotFound';
 import RequireAuth from './auth/requireAuth';
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts, clearPosts } from '../actions';
+import { fetchPosts, clearPosts } from '../../actions';
 
 import PostCard from './PostCard';
 
