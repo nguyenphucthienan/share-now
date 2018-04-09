@@ -9,7 +9,11 @@ main {
 }
 
 .brand-logo {
-  margin-left: 15px;
+  margin-left: 5px;
+}
+
+.brand-title {
+  font-size: 25px;
 }
 
 .navbar-fixed {

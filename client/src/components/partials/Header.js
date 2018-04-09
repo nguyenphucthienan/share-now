@@ -26,7 +26,7 @@ class Header extends Component {
           <nav className="transparent-fixed">
             <div className="nav-wrapper blue darken-1">
               <Link to="/" className="brand-logo">
-                <i className="material-icons">face</i>ShareNow
+                <i className="material-icons">face</i><span className="brand-title">ShareNow</span>
               </Link>
 
               <a data-activates="nav-mobile" className="button-collapse pointer-cursor">
