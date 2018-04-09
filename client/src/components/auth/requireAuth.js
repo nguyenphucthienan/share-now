@@ -18,5 +18,5 @@ export default (ComposedComponent) => {
     return { user };
   }
 
-  return withRouter(connect(mapStateToProps)(Authentication));
+  return connect(mapStateToProps)(withRouter(Authentication));
 };

@@ -40,7 +40,7 @@ class PostNew extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col s12">
+          <div className="col s12 m8 offset-m2 l6 offset-l3">
             <h2 className="center-align">New Post</h2>
             <div>
               <form onSubmit={this.props.handleSubmit(values => this.createPost(values))}>

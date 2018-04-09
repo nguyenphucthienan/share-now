@@ -1,5 +1,5 @@
 {
-  "name": "aseproject",
+  "name": "sharenow",
   "version": "1.0.0",
   "description": "**Class:** SE214.I21  \r **Lecturer:** MS. Nguyễn Công Hoan  \r **Project:** Web Application for sharing hilarious Teacher Test Comments  \r **Seminar Topic:** Progressive Web Apps (PWAs)",
   "main": "index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nguyenphucthienan/ASEProject.git"
+    "url": "git+https://github.com/nguyenphucthienan/ShareNow.git"
   },
   "author": "Nguyen Phuc Thien An",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nguyenphucthienan/ASEProject/issues"
+    "url": "https://github.com/nguyenphucthienan/ShareNow/issues"
   },
-  "homepage": "https://github.com/nguyenphucthienan/ASEProject#readme",
+  "homepage": "https://github.com/nguyenphucthienan/ShareNow#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
