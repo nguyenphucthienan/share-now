@@ -42,7 +42,7 @@ exports.getPost = async (req, res) => {
       .findOne({
         _id: postId
       })
-      .populate('author', '_id email displayName');
+      .populate('author', '_id');
 
     return res.send(post);
   } catch (err) {
