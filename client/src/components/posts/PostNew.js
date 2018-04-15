@@ -9,18 +9,20 @@ import config from '../../config';
 import InputField from '../forms/InputField';
 import TextAreaField from '../forms/TextAreaField';
 
+let image;
+
 class PostNew extends Component {
   componentDidMount() {
     document.title = `${config.appName} – New Post`;
 
     const videoPlayer = document.querySelector('#player');
-    const canvasElement = document.querySelector('#canvas');
+    const canvas = document.querySelector('#canvas');
     const imagePickerArea = document.querySelector('#pick-image');
     const captureButton = document.querySelector('#capture-button');
 
-    imagePickerArea.style.display = 'none';
     videoPlayer.style.display = 'none';
-    canvasElement.style.display = 'none';
+    canvas.style.display = 'none';
+    imagePickerArea.style.display = 'none';
     captureButton.style.display = 'none';
 
     if (!('mediaDevices' in navigator)) {
@@ -71,18 +73,20 @@ class PostNew extends Component {
       track.stop();
     });
 
-    const picture = dataURItoBlob(canvas.toDataURL());
-
-    const postData = new FormData();
-    postData.append('image', picture, 'test.png');
-
-    axios.post('/api/posts/upload', postData)
-      .then(response => console.log(response.data));
+    image = dataURItoBlob(canvas.toDataURL());
   }
 
   async createPost(values) {
     try {
-      const response = await axios.post('/api/posts', values);
+      const formData = new FormData();
+      formData.append('image', image, 'image.png');
+
+      const uploadResponse = await axios.post('/api/posts/upload', formData);
+
+      const postData = { ...values };
+      postData.image = `${config.uploadImageURL}/${uploadResponse.data.url}`;
+
+      const response = await axios.post('/api/posts', postData);
       const { data: { _id: postId } } = response;
       this.props.history.push(`/posts/${postId}`);
     } catch (err) {
@@ -128,12 +132,6 @@ class PostNew extends Component {
               <form onSubmit={this.props.handleSubmit(values => this.createPost(values))}>
                 <Field
                   type="text"
-                  name="image"
-                  label="Image"
-                  component={InputField}
-                />
-                <Field
-                  type="text"
                   name="title"
                   label="Title"
                   component={InputField}
@@ -163,10 +161,6 @@ class PostNew extends Component {
 
 function validate(values) {
   const errors = {};
-
-  if (!values.image) {
-    errors.image = 'Image cannot be blank';
-  }
 
   if (!values.title) {
     errors.title = 'Title cannot be blank';
