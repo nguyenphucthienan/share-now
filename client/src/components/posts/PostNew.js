@@ -76,6 +76,10 @@ class PostNew extends Component {
     image = dataURItoBlob(canvas.toDataURL());
   }
 
+  onFileSelect(event) {
+    image = event.target.files[0];
+  }
+
   async createPost(values) {
     try {
       const formData = new FormData();
@@ -125,7 +129,7 @@ class PostNew extends Component {
             </div>
             <div id="pick-image" className="row center-align">
               <div className="col s12">
-                <input type="file" accept="image/*" id="image-picker" />
+                <input type="file" accept="image/*" id="image-picker" onChange={this.onFileSelect} />
               </div>
             </div>
             <div>
