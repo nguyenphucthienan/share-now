@@ -82,8 +82,13 @@ class PostNew extends Component {
 
   async createPost(values) {
     try {
+      if (!image) {
+        return;
+      }
+
       const formData = new FormData();
       formData.append('image', image, 'image.png');
+      image = null;
 
       const uploadResponse = await axios.post('/api/posts/upload', formData);
 
