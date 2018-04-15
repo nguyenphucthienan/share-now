@@ -54,6 +54,14 @@ class PostNew extends Component {
       });
   }
 
+  componentWillUnmount() {
+    const videoPlayer = document.querySelector('#player');
+
+    videoPlayer.srcObject.getVideoTracks().forEach((track) => {
+      track.stop();
+    });
+  }
+
   onCapture() {
     const videoPlayer = document.querySelector('#player');
     const canvas = document.querySelector('#canvas');
