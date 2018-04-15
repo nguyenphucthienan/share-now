@@ -3,13 +3,13 @@ const Post = mongoose.model('Post');
 const multerUpload = require('../services/multerUpload');
 
 exports.uploadImage = (req, res) => {
-  if (req.file) {
-    return res.status(400).send({ message: 'File not found' });
-  }
-
-  return multerUpload(req, res, (err) => {
+  multerUpload(req, res, (err) => {
     if (err) {
       return res.status(400).send(err);
+    }
+
+    if (!req.file) {
+      return res.status(500).send({ message: 'Image not found' });
     }
 
     return res.send({ url: req.file.filename });
