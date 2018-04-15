@@ -1,10 +1,8 @@
 const CACHE_STATIC_NAME = 'static-v1';
-const CACHE_DYNAMIC_NAME = 'dynamic-v1';
 
 const STATIC_FILES = [
   '/',
   '/index.html',
-  '/resources/js/app.js',
   '/resources/js/materialize-scripts.js',
   'https://fonts.googleapis.com/icon?family=Material+Icons',
   'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js',
@@ -21,7 +19,7 @@ self.addEventListener('activate', (event) => {
   console.log('[Service Worker] Activating Service Worker ...', event);
   event.waitUntil(caches.keys()
     .then(keyList => Promise.all([keyList.map((key) => {
-      if (key !== CACHE_STATIC_NAME && key !== CACHE_DYNAMIC_NAME) {
+      if (key !== CACHE_STATIC_NAME) {
         console.log('[Service Worker] Removing old cache', key);
         return caches.delete(key);
       }
@@ -31,26 +29,11 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  console.log(event.request.url);
-
   if (isInArray(event.request.url, STATIC_FILES)) {
     event.respondWith(caches.match(event.request));
   } else {
-    event.respondWith(caches.match(event.request)
-      .then((response) => {
-        if (response) {
-          return response;
-        }
-
-        return fetch(event.request)
-          .then(res => caches.open(CACHE_DYNAMIC_NAME)
-            .then((cache) => {
-              cache.put(event.request.url, res.clone());
-              return res;
-            }))
-          .catch(err => caches.open(CACHE_STATIC_NAME)
-            .then(cache => cache.match('/404')));
-      }));
+    event.respondWith(fetch(event.request)
+      .catch(err => caches.match(event.request)));
   }
 });
 
