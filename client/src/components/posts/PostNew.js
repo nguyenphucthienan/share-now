@@ -16,10 +16,12 @@ class PostNew extends Component {
     const videoPlayer = document.querySelector('#player');
     const canvasElement = document.querySelector('#canvas');
     const imagePickerArea = document.querySelector('#pick-image');
+    const captureButton = document.querySelector('#capture-button');
 
     imagePickerArea.style.display = 'none';
     videoPlayer.style.display = 'none';
     canvasElement.style.display = 'none';
+    captureButton.style.display = 'none';
 
     if (!('mediaDevices' in navigator)) {
       navigator.mediaDevices = {};
@@ -43,6 +45,7 @@ class PostNew extends Component {
       .then((stream) => {
         videoPlayer.srcObject = stream;
         videoPlayer.style.display = 'block';
+        captureButton.style.display = 'inline-block';
       })
       .catch((err) => {
         imagePickerArea.style.display = 'block';
@@ -74,7 +77,7 @@ class PostNew extends Component {
     postData.append('image', picture, 'test.png');
 
     axios.post('/api/posts/upload', postData)
-      .then(response => console.log(response));
+      .then(response => console.log(response.data));
   }
 
   async createPost(values) {
@@ -108,11 +111,18 @@ class PostNew extends Component {
             <h2 className="center-align">New Post</h2>
             <video id="player" className="responsive-video" autoPlay />
             <canvas id="canvas" />
-            <button id="capture-button" className="btn waves-effect waves-light orange accent-3 center-align" onClick={() => this.onCapture()}>
-              Capture
-            </button>
-            <div id="pick-image">
-              <input type="file" accept="image/*" id="image-picker" />
+            <hr />
+            <div className="row center-align">
+              <div className="col s12">
+                <button type="button" id="capture-button" className="btn waves-effect waves-light orange accent-3 center-align" onClick={() => this.onCapture()}>
+                  Capture
+                </button>
+              </div>
+            </div>
+            <div id="pick-image" className="row center-align">
+              <div className="col s12">
+                <input type="file" accept="image/*" id="image-picker" />
+              </div>
             </div>
             <div>
               <form onSubmit={this.props.handleSubmit(values => this.createPost(values))}>
