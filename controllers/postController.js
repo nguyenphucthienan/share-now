@@ -1,5 +1,16 @@
 const mongoose = require('mongoose');
 const Post = mongoose.model('Post');
+const multerUpload = require('../services/multerUpload');
+
+exports.uploadImage = (req, res) => {
+  multerUpload(req, res, (err) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+
+    return res.send({ url: req.file.filename });
+  });
+};
 
 exports.getPosts = async (req, res) => {
   const page = Math.max(0, parseInt(req.query.page - 1, 10));

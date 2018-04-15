@@ -61,3 +61,7 @@ main {
 .card-content-title {
   font-weight: bold;
 }
+
+#canvas {
+  width: 100%;
+}

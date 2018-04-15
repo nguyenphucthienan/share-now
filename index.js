@@ -14,6 +14,7 @@ const config = require('./config');
 mongoose.Promise = global.Promise;
 mongoose.connect(config.mongoURI);
 
+app.use(express.static('publics'));
 app.use(bodyParser.json());
 
 app.use(session({

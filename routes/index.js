@@ -51,4 +51,10 @@ router.post(
   postController.heartPost
 );
 
+router.post(
+  '/posts/upload',
+  requireLogin,
+  postController.uploadImage
+);
+
 module.exports = router;
