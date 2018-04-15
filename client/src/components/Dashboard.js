@@ -5,9 +5,34 @@ import config from '../config';
 import PostList from './posts/PostList';
 import PostPagination from './posts/PostPagination';
 
+let deferredPrompt;
+
 class Dashboard extends Component {
   componentDidMount() {
     document.title = `${config.appName} – Dashboard`;
+
+    window.addEventListener('beforeinstallprompt', (event) => {
+      console.log('beforeinstallprompt fired');
+      event.preventDefault();
+      deferredPrompt = event;
+      return false;
+    });
+
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+
+      deferredPrompt.userChoice.then((choiceResult) => {
+        console.log(choiceResult.outcome);
+
+        if (choiceResult.outcome === 'dismissed') {
+          console.log('User cancelled installation');
+        } else {
+          console.log('User added to home screen');
+        }
+      });
+
+      deferredPrompt = null;
+    }
   }
 
   renderNewButton() {
