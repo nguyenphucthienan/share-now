@@ -57,9 +57,11 @@ class PostNew extends Component {
   componentWillUnmount() {
     const videoPlayer = document.querySelector('#player');
 
-    videoPlayer.srcObject.getVideoTracks().forEach((track) => {
-      track.stop();
-    });
+    if (videoPlayer.srcObject) {
+      videoPlayer.srcObject.getVideoTracks().forEach((track) => {
+        track.stop();
+      });
+    }
   }
 
   onCapture() {
