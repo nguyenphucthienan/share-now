@@ -15,6 +15,10 @@ class PostNew extends Component {
   componentDidMount() {
     document.title = `${config.appName} – New Post`;
 
+    this.initializeCamera();
+  }
+
+  initializeCamera() {
     const videoPlayer = document.querySelector('#player');
     const canvas = document.querySelector('#canvas');
     const imagePickerArea = document.querySelector('#pick-image');
@@ -54,6 +58,14 @@ class PostNew extends Component {
       });
   }
 
+  initializeLocation() {
+    const locationButton = document.getElementById('#location-button');
+
+    if (!('geolocation' in navigator)) {
+      locationButton.style.display = 'none';
+    }
+  }
+
   componentWillUnmount() {
     const videoPlayer = document.querySelector('#player');
 
@@ -84,6 +96,31 @@ class PostNew extends Component {
     });
 
     image = dataURItoBlob(canvas.toDataURL());
+  }
+
+  onGetLocation() {
+    const locationButton = document.querySelector('#location-button');
+
+    if (!('geolocation' in navigator)) {
+      return;
+    }
+
+    locationButton.style.display = 'none';
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      locationButton.style.display = 'inline';
+      const fetchedLocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      console.log(fetchedLocation);
+
+      this.props.change('location', 'Vietnam');
+    }, (err) => {
+      console.log(err);
+      locationButton.style.display = 'inline';
+    }, { timeout: 5000 });
   }
 
   onFileSelect(event) {
@@ -150,6 +187,13 @@ class PostNew extends Component {
             <div>
               <form onSubmit={this.props.handleSubmit(values => this.createPost(values))}>
                 <Field
+                  id="location-input"
+                  type="text"
+                  name="location"
+                  label="location"
+                  component={InputField}
+                />
+                <Field
                   type="text"
                   name="title"
                   label="Title"
@@ -166,6 +210,9 @@ class PostNew extends Component {
                     <button type="submit" className="btn waves-effect waves-light green accent-3 center-align">
                       <i className="material-icons left">done</i>Post
                     </button>
+                    <button type="button" className="btn waves-effect waves-light green accent-3 center-align" id="location-button" onClick={() => this.onGetLocation()}>
+                      <i className="material-icons">location_on</i>
+                    </button>
                   </div>
                 </div>
               </form>
@@ -180,6 +227,14 @@ class PostNew extends Component {
 
 function validate(values) {
   const errors = {};
+
+  if (!values.location) {
+    errors.location = 'Location cannot be blank';
+  }
+
+  if (values.location && values.location.trim().length > 50) {
+    errors.location = 'Location must be a string with a maximum length of 50 characters';
+  }
 
   if (!values.title) {
     errors.title = 'Title cannot be blank';
