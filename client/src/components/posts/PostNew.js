@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
+import Geocode from 'react-geocode';
 import axios from 'axios';
 import { dataURItoBlob } from '../../utils';
 import config from '../../config';
@@ -16,6 +17,7 @@ class PostNew extends Component {
     document.title = `${config.appName} – New Post`;
 
     this.initializeCamera();
+    this.initializeLocation();
   }
 
   initializeCamera() {
@@ -59,6 +61,7 @@ class PostNew extends Component {
   }
 
   initializeLocation() {
+    Geocode.setApiKey('AIzaSyCs53fPASgO3QEtT-6jzzN9yARULWl99P8');
     const locationButton = document.getElementById('#location-button');
 
     if (!('geolocation' in navigator)) {
@@ -109,14 +112,17 @@ class PostNew extends Component {
 
     navigator.geolocation.getCurrentPosition((position) => {
       locationButton.style.display = 'inline';
-      const fetchedLocation = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
 
-      console.log(fetchedLocation);
-
-      this.props.change('location', 'Vietnam');
+      Geocode.fromLatLng(position.coords.latitude, position.coords.longitude)
+        .then(
+          (response) => {
+            const address = response.results[1].formatted_address;
+            this.props.change('location', address);
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
     }, (err) => {
       console.log(err);
       locationButton.style.display = 'inline';
@@ -152,7 +158,7 @@ class PostNew extends Component {
 
   renderBackButton() {
     return (
-      <div className="fixed-action-btn">
+      <div className="fixed-action-btn" >
         <Link
           to="/dashboard"
           className="waves-effect waves-light btn btn-floating btn-large indigo darken-2 pulse"
@@ -232,8 +238,8 @@ function validate(values) {
     errors.location = 'Location cannot be blank';
   }
 
-  if (values.location && values.location.trim().length > 50) {
-    errors.location = 'Location must be a string with a maximum length of 50 characters';
+  if (values.location && values.location.trim().length > 100) {
+    errors.location = 'Location must be a string with a maximum length of 100 characters';
   }
 
   if (!values.title) {
