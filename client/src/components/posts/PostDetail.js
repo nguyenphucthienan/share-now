@@ -129,7 +129,8 @@ class PostDetail extends Component {
     if (this.props.post) {
       const {
         _id: postId,
-        image, title, content
+        image, location,
+        title, content
       } = this.props.post;
 
       return (
@@ -150,12 +151,23 @@ class PostDetail extends Component {
               <div className="card row">
                 <div className="col s12">
                   <p>
-                    <span className="card-content-title">Hearts: </span>
-                    <span>{this.state.numOfHearts}</span>
+                    <i className="material-icons">location_on</i>
+                    <span className="card-content-title"> Location: </span>
+                    <span className="card-content-text">{location}</span>
+                  </p>
+                </div>
+              </div>
+              <div className="card row">
+                <div className="col s12">
+                  <p>
+                    <i className="material-icons">favorite</i>
+                    <span className="card-content-title"> Hearts: </span>
+                    <span className="card-content-text">{this.state.numOfHearts}</span>
                   </p>
                   <p>
-                    <span className="card-content-title">Content: </span>
-                    <span>{content}</span>
+                    <i className="material-icons">chrome_reader_mode</i>
+                    <span className="card-content-title"> Content: </span>
+                    <span className="card-content-text">{content}</span>
                   </p>
                   <div className="row">
                     <div className="col s12">

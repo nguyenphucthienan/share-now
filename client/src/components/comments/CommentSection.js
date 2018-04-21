@@ -14,8 +14,9 @@ class CommentSection extends Component {
           <div className="row">
             <div className="col s12">
               <p>
-                <span className="card-content-title">Comments: </span>
-                <span>{(comments && comments.length) || 0}</span>
+                <i className="material-icons">people</i>
+                <span className="card-content-title"> Comments: </span>
+                <span className="card-content-text">{(comments && comments.length) || 0}</span>
               </p>
             </div>
           </div>

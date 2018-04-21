@@ -72,8 +72,9 @@ class PostCard extends Component {
           </div>
           <div className="card-content">
             <p>
-              <span className="card-content-title">Hearts: </span>
-              <span>{this.state.numOfHearts}</span>
+              <i className="material-icons">favorite</i>
+              <span className="card-content-title"> Hearts: </span>
+              <span className="card-content-text">{this.state.numOfHearts}</span>
             </p>
           </div>
         </div>

@@ -58,6 +58,12 @@ main {
   margin-bottom: 5px;
 }
 
+.material-icons,
+.card-content-title,
+.card-content-text {
+  vertical-align: middle;
+}
+
 .card-content-title {
   font-weight: bold;
 }
