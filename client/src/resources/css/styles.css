@@ -71,3 +71,7 @@ main {
 #canvas {
   width: 100%;
 }
+
+#location-button {
+  margin-left: 15px;
+}

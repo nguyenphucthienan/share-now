@@ -196,7 +196,7 @@ class PostNew extends Component {
                   id="location-input"
                   type="text"
                   name="location"
-                  label="location"
+                  label="Location"
                   component={InputField}
                 />
                 <Field
@@ -216,7 +216,7 @@ class PostNew extends Component {
                     <button type="submit" className="btn waves-effect waves-light green accent-3 center-align">
                       <i className="material-icons left">done</i>Post
                     </button>
-                    <button type="button" className="btn waves-effect waves-light green accent-3 center-align" id="location-button" onClick={() => this.onGetLocation()}>
+                    <button type="button" className="btn waves-effect waves-light red center-align" id="location-button" onClick={() => this.onGetLocation()}>
                       <i className="material-icons">location_on</i>
                     </button>
                   </div>
