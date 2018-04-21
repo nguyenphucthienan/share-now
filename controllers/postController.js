@@ -67,11 +67,15 @@ exports.getPost = async (req, res) => {
 
 exports.createPost = async (req, res) => {
   const { id: userId } = req.user;
-  const { image, title, content } = req.body;
+  const {
+    image, location,
+    title, content
+  } = req.body;
 
   const post = new Post({
     author: userId,
     image,
+    location,
     title,
     content
   });

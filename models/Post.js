@@ -12,6 +12,11 @@ const postSchema = new Schema({
     require: 'Image cannot be blank',
     trim: true
   },
+  location: {
+    type: String,
+    require: 'Location cannot be blank',
+    trim: true
+  },
   title: {
     type: String,
     require: 'Title cannot be blank',
