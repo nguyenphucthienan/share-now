@@ -7,6 +7,7 @@ const passport = require('passport');
 require('./models/User');
 require('./models/Post');
 require('./models/Comment');
+require('./models/Subscription');
 require('./services/passportGoogleOAuth');
 const routes = require('./routes');
 const config = require('./config');
