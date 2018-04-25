@@ -29,7 +29,7 @@ exports.cloudinaryUpload = (req, res) => {
     dataUri.format('.png', req.file.buffer);
 
     return cloudinary.uploader.upload(dataUri.content, (result) => {
-      return res.send({ url: result.url });
+      return res.send({ url: result.secure_url });
     });
   });
 };
