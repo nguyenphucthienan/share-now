@@ -1,8 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { urlBase64ToUint8Array } from '../../utils';
 
 class Header extends Component {
+  constructor() {
+    super();
+    this.subscribePushNotification = this.subscribePushNotification.bind(this);
+  }
+
+  registerPushNotification() {
+    if (('serviceWorker' in navigator)) {
+      let reg;
+      navigator.serviceWorker.ready
+        .then((swreg) => {
+          reg = swreg;
+          return swreg.pushManager.getSubscription();
+        })
+        .then((subscription) => {
+          if (!subscription) {
+            const vapidPublicKey = 'vapidPublicKey';
+            const convertedVapidPublicKey = urlBase64ToUint8Array(vapidPublicKey);
+
+            return reg.pushManager.subscribe({
+              userVisibleOnly: true,
+              applicationServerKey: convertedVapidPublicKey
+            });
+          }
+        })
+        .then(newSubscription => console.log(newSubscription))
+        .catch(err => console.log(err));
+    }
+  }
+
   subscribePushNotification() {
     Notification.requestPermission((result) => {
       console.log('User choice', result);
@@ -10,6 +40,7 @@ class Header extends Component {
         console.log('No notification permission granted.');
       } else {
         console.log('Notification permission granted');
+        this.registerPushNotification();
       }
     });
   }
