@@ -4,6 +4,7 @@ const router = express.Router();
 const authController = require('../controllers/authController');
 const postController = require('../controllers/postController');
 const commentController = require('../controllers/commentController');
+const notificationController = require('../controllers/notificationController');
 const requireLogin = require('../middlewares/requireLogin');
 
 router.get('/', (req, res) => {
@@ -56,5 +57,7 @@ router.post(
   requireLogin,
   postController.uploadImage
 );
+
+router.post('/notifications/subscribe', notificationController.saveSubscription);
 
 module.exports = router;
