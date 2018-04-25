@@ -141,12 +141,12 @@ class PostNew extends Component {
 
       const formData = new FormData();
       formData.append('image', image, 'image.png');
+
       image = null;
 
-      const uploadResponse = await axios.post('/api/posts/upload', formData);
-
+      const uploadResponse = await axios.post('/api/posts/cloudinary-upload', formData);
       const postData = { ...values };
-      postData.image = `${config.uploadImageURL}/${uploadResponse.data.url}`;
+      postData.image = uploadResponse.data.url;
 
       const response = await axios.post('/api/posts', postData);
       const { data: { _id: postId } } = response;
