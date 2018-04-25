@@ -3,12 +3,24 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class Header extends Component {
+  subscribePushNotification() {
+    Notification.requestPermission((result) => {
+      console.log('User choice', result);
+      if (result !== 'granted') {
+        console.log('No notification permission granted.');
+      } else {
+        console.log('Notification permission granted');
+      }
+    });
+  }
+
   renderHeader() {
     if (this.props.user) {
       return [
         <li key="1"><Link to="/dashboard">Dashboard</Link></li>,
         <li key="2"><Link to="/about">About</Link></li>,
-        <li key="3"><a href="/api/logout">Logout</a></li>
+        <li key="3"><a href="/api/logout">Logout</a></li>,
+        <li key="4"><a className="waves-effect waves-light btn" onClick={this.subscribePushNotification}>Subscribe</a></li>
       ];
     }
 
