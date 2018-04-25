@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
+const cloudinary = require('cloudinary');
 const webpush = require('web-push');
 const path = require('path');
 require('./models/User');
@@ -33,6 +34,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/api', routes);
+
+cloudinary.config({
+  cloud_name: config.cloudinaryCloudName,
+  api_key: config.cloudinaryApiKey,
+  api_secret: config.cloudinaryApiSecret
+});
 
 webpush.setVapidDetails(
   'mailto:npta97@gmail.com',

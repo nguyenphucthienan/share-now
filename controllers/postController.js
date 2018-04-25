@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const Post = mongoose.model('Post');
+const cloudinary = require('cloudinary');
+const Datauri = require('datauri');
 const multerUpload = require('../services/multerUpload');
+const multerCloudinaryUpload = require('../services/multerCloudinaryUpload');
 
 exports.uploadImage = (req, res) => {
   multerUpload(req, res, (err) => {
@@ -13,6 +16,21 @@ exports.uploadImage = (req, res) => {
     }
 
     return res.send({ url: req.file.filename });
+  });
+};
+
+exports.cloudinaryUpload = (req, res) => {
+  multerCloudinaryUpload(req, res, (err) => {
+    if (err) {
+      return res.send(err);
+    }
+
+    const dataUri = new Datauri();
+    dataUri.format('.png', req.file.buffer);
+
+    return cloudinary.uploader.upload(dataUri.content, (result) => {
+      return res.send({ url: result.url });
+    });
   });
 };
 

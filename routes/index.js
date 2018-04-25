@@ -58,6 +58,12 @@ router.post(
   postController.uploadImage
 );
 
+router.post(
+  '/posts/cloudinary-upload',
+  requireLogin,
+  postController.cloudinaryUpload
+);
+
 router.post('/notifications/subscribe', notificationController.saveSubscription);
 router.post('/notifications/push', notificationController.pushNotification);
 
