@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { urlBase64ToUint8Array } from '../../utils';
 import config from '../../config';
+import { urlBase64ToUint8Array } from '../../utils';
 
 class Header extends Component {
   constructor() {
@@ -32,10 +32,38 @@ class Header extends Component {
         .then((newSubscription) => {
           if (newSubscription) {
             axios.post('/api/notifications/subscribe', newSubscription)
-              .then(response => console.log(response));
+              .then((response) => {
+                if (response.status === 200) {
+                  this.displayConfirmNotification();
+                }
+              });
           }
         })
         .catch(err => console.log(err));
+    }
+  }
+
+  displayConfirmNotification() {
+    if ('serviceWorker' in navigator) {
+      const options = {
+        body: 'You successfully subscribed to our Notification service!',
+        icon: '/resources/icons/144x144.png',
+        dir: 'ltr',
+        lang: 'en-US',
+        vibrate: [100, 50, 200],
+        badge: '/resources/icons/144x144.png',
+        tag: 'confirm-notification',
+        renotify: false,
+        actions: [
+          { action: 'confirm', title: 'OK' },
+          { action: 'cancel', title: 'Cancel' }
+        ]
+      };
+
+      navigator.serviceWorker.ready
+        .then((swreg) => {
+          swreg.showNotification('Successfully subscribed!', options);
+        });
     }
   }
 
