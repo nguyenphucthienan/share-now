@@ -19,6 +19,8 @@ exports.saveSubscription = async (req, res) => {
 
 exports.pushNotification = async (req, res) => {
   try {
+    const { title, content, openUrl } = req.body;
+
     const subscriptions = await Subscription
       .find({})
       .lean()
@@ -34,9 +36,9 @@ exports.pushNotification = async (req, res) => {
       };
 
       webpush.sendNotification(pushConfig, JSON.stringify({
-        title: 'New Post',
-        content: 'New post added',
-        openUrl: '/dashboard'
+        title,
+        content,
+        openUrl
       }))
         .catch(err => console.log(err));
     });
