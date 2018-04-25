@@ -37,6 +37,31 @@ self.addEventListener('fetch', (event) => {
   }
 });
 
+self.addEventListener('push', (event) => {
+  console.log('Push Notification received', event);
+
+  let data = {
+    title: 'New Post',
+    content: 'Something new happened!',
+    openUrl: '/dashboard'
+  };
+
+  if (event.data) {
+    data = JSON.parse(event.data.text());
+  }
+
+  const options = {
+    body: data.content,
+    icon: '/resources/icons/144x144.png',
+    badge: '/resources/icons/144x144.png',
+    data: {
+      url: data.openUrl,
+    }
+  };
+
+  event.waitUntil(self.registration.showNotification(data.title, options));
+});
+
 function isInArray(string, array) {
   let cachePath;
   // request targets domain where we serve the page from (i.e. NOT a CDN)
