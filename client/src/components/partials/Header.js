@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { urlBase64ToUint8Array } from '../../utils';
+import config from '../../config';
 
 class Header extends Component {
   constructor() {
@@ -19,16 +21,20 @@ class Header extends Component {
         })
         .then((subscription) => {
           if (!subscription) {
-            const vapidPublicKey = 'vapidPublicKey';
-            const convertedVapidPublicKey = urlBase64ToUint8Array(vapidPublicKey);
-
+            const convertedVapidPublicKey = urlBase64ToUint8Array(config.vapidPublicKey);
             return reg.pushManager.subscribe({
               userVisibleOnly: true,
               applicationServerKey: convertedVapidPublicKey
             });
           }
+          return null;
         })
-        .then(newSubscription => console.log(newSubscription))
+        .then((newSubscription) => {
+          if (newSubscription) {
+            axios.post('/api/notifications/subscribe', newSubscription)
+              .then(response => console.log(response));
+          }
+        })
         .catch(err => console.log(err));
     }
   }
@@ -51,14 +57,15 @@ class Header extends Component {
         <li key="1"><Link to="/dashboard">Dashboard</Link></li>,
         <li key="2"><Link to="/about">About</Link></li>,
         <li key="3"><a href="/api/logout">Logout</a></li>,
-        <li key="4"><a className="waves-effect waves-light btn" onClick={this.subscribePushNotification}>Subscribe</a></li>
+        <li key="4"><a className="waves-effect waves-light deep-purple darken-4 btn" onClick={this.subscribePushNotification}>Subscribe</a></li>
       ];
     }
 
     return [
       <li key="1"><Link to="/dashboard">Dashboard</Link></li>,
       <li key="2"><Link to="/about">About</Link></li>,
-      <li key="3"><a href="/api/login/google">Login</a></li>
+      <li key="3"><a href="/api/login/google">Login</a></li>,
+      <li key="4"><a className="waves-effect waves-light deep-purple darken-4 btn" onClick={this.subscribePushNotification}>Subscribe</a></li>
     ];
   }
 
@@ -71,15 +78,12 @@ class Header extends Component {
               <Link to="/" className="brand-logo">
                 <i className="material-icons">face</i><span className="brand-title">ShareNow</span>
               </Link>
-
               <a data-activates="nav-mobile" className="button-collapse pointer-cursor">
                 <i className="material-icons">menu</i>
               </a>
-
               <ul className="right hide-on-med-and-down">
                 {this.renderHeader()}
               </ul>
-
               <ul className="side-nav" id="nav-mobile">
                 {this.renderHeader()}
               </ul>
