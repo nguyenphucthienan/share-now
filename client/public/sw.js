@@ -37,13 +37,38 @@ self.addEventListener('fetch', (event) => {
   }
 });
 
+self.addEventListener('notificationclick', (event) => {
+  const { notification, action } = event;
+  console.log(notification);
+
+  if (action === 'confirm') {
+    console.log('Confirm was chosen');
+    notification.close();
+  } else {
+    console.log(action);
+    event.waitUntil(clients.matchAll()
+      .then((clis) => {
+        const client = clis.find(c => c.visibilityState === 'visible');
+
+        if (client) {
+          client.navigate(notification.data.url);
+          client.focus();
+        } else {
+          clients.openWindow(notification.data.url);
+        }
+
+        notification.close();
+      }));
+  }
+});
+
 self.addEventListener('push', (event) => {
   console.log('Push Notification received', event);
 
   let data = {
-    title: 'New Post',
+    title: 'Notification',
     content: 'Something new happened!',
-    openUrl: '/dashboard'
+    openUrl: '/'
   };
 
   if (event.data) {
