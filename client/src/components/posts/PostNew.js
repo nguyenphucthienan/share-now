@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
-import Geocode from 'react-geocode';
+// import Geocode from 'react-geocode';
 import axios from 'axios';
 import { dataURItoBlob } from '../../utils';
 import config from '../../config';
@@ -61,7 +61,7 @@ class PostNew extends Component {
   }
 
   initializeLocation() {
-    Geocode.setApiKey('AIzaSyCs53fPASgO3QEtT-6jzzN9yARULWl99P8');
+    // Geocode.setApiKey('AIzaSyCs53fPASgO3QEtT-6jzzN9yARULWl99P8');
     const locationButton = document.getElementById('#location-button');
 
     if (!('geolocation' in navigator)) {
@@ -113,16 +113,16 @@ class PostNew extends Component {
     navigator.geolocation.getCurrentPosition((position) => {
       locationButton.style.display = 'inline';
 
-      Geocode.fromLatLng(position.coords.latitude, position.coords.longitude)
-        .then(
-          (response) => {
-            const address = response.results[1].formatted_address;
-            this.props.change('location', address);
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
+      // Geocode.fromLatLng(position.coords.latitude, position.coords.longitude)
+      //   .then(
+      //     (response) => {
+      //       const address = response.results[1].formatted_address;
+      //       this.props.change('location', address);
+      //     },
+      //     (error) => {
+      //       console.error(error);
+      //     }
+      //   );
     }, (err) => {
       console.log(err);
       locationButton.style.display = 'inline';
