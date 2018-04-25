@@ -60,4 +60,6 @@ router.post(
 
 router.post('/notifications/subscribe', notificationController.saveSubscription);
 
+router.post('/notifications/push', notificationController.pushNotification);
+
 module.exports = router;
