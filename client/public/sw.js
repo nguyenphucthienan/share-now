@@ -1,7 +1,9 @@
 const CACHE_STATIC_NAME = 'static-v1';
+const CACHE_DYNAMIC_NAME = 'dynamic-v1';
 
 const STATIC_FILES = [
   '/',
+  '/404',
   '/index.html',
   '/resources/js/materialize-scripts.js',
   'https://fonts.googleapis.com/icon?family=Material+Icons',
@@ -28,12 +30,32 @@ self.addEventListener('activate', (event) => {
   return self.clients.claim();
 });
 
+// self.addEventListener('fetch', (event) => {
+//   if (isInArray(event.request.url, STATIC_FILES)) {
+//     event.respondWith(caches.match(event.request));
+//   } else {
+//     event.respondWith(fetch(event.request)
+//       .catch(err => caches.match(event.request)));
+//   }
+// });
+
 self.addEventListener('fetch', (event) => {
   if (isInArray(event.request.url, STATIC_FILES)) {
     event.respondWith(caches.match(event.request));
   } else {
     event.respondWith(fetch(event.request)
-      .catch(err => caches.match(event.request)));
+      .then(response => caches.open(CACHE_DYNAMIC_NAME)
+        .then((cache) => {
+          cache.put(event.request.url, response.clone());
+          return response;
+        }))
+      .catch(err => caches.match(event.request)
+        .then((response) => {
+          if (response) {
+            return response;
+          }
+        })
+        .catch(err => caches.match('/'))));
   }
 });
 
