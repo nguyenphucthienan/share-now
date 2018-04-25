@@ -62,6 +62,10 @@ self.addEventListener('notificationclick', (event) => {
   }
 });
 
+self.addEventListener('notificationclose', (event) => {
+  console.log('Notification was closed', event);
+});
+
 self.addEventListener('push', (event) => {
   console.log('Push Notification received', event);
 
