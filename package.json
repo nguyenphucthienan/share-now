@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "**Class:** SE214.I21  \r **Lecturer:** MS. Nguyễn Công Hoan  \r **Project:** Web Application for sharing hilarious Teacher Test Comments  \r **Seminar Topic:** Progressive Web Apps (PWAs)",
   "main": "index.js",
+  "engines": {
+    "node": "8.9.4",
+    "npm": "5.8.0"
+  },
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
@@ -28,9 +33,7 @@
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
     "uuid": "^3.2.1",
-    "web-push": "^3.3.0"
-  },
-  "devDependencies": {
+    "web-push": "^3.3.0",
     "concurrently": "^3.5.1",
     "nodemon": "^1.17.3"
   }
