@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
-// import Geocode from 'react-geocode';
+import NodeGeocoder from 'node-geocoder';
 import axios from 'axios';
 import { dataURItoBlob } from '../../utils';
 import config from '../../config';
@@ -11,6 +11,7 @@ import InputField from '../forms/InputField';
 import TextAreaField from '../forms/TextAreaField';
 
 let image;
+let geocoder;
 
 class PostNew extends Component {
   componentDidMount() {
@@ -61,12 +62,18 @@ class PostNew extends Component {
   }
 
   initializeLocation() {
-    // Geocode.setApiKey('AIzaSyCs53fPASgO3QEtT-6jzzN9yARULWl99P8');
     const locationButton = document.getElementById('#location-button');
 
     if (!('geolocation' in navigator)) {
       locationButton.style.display = 'none';
     }
+
+    geocoder = NodeGeocoder({
+      provider: 'google',
+      httpAdapter: 'https',
+      apiKey: config.googleMapsApiKey,
+      formatter: null
+    });
   }
 
   componentWillUnmount() {
@@ -102,27 +109,26 @@ class PostNew extends Component {
   }
 
   onGetLocation() {
-    const locationButton = document.querySelector('#location-button');
-
     if (!('geolocation' in navigator)) {
       return;
     }
 
+    const locationButton = document.querySelector('#location-button');
     locationButton.style.display = 'none';
 
     navigator.geolocation.getCurrentPosition((position) => {
       locationButton.style.display = 'inline';
 
-      // Geocode.fromLatLng(position.coords.latitude, position.coords.longitude)
-      //   .then(
-      //     (response) => {
-      //       const address = response.results[1].formatted_address;
-      //       this.props.change('location', address);
-      //     },
-      //     (error) => {
-      //       console.error(error);
-      //     }
-      //   );
+      geocoder.reverse({
+        lat: position.coords.latitude,
+        lon: position.coords.longitude
+      })
+        .then((adresses) => {
+          this.props.change('location', adresses[0].formattedAddress);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }, (err) => {
       console.log(err);
       locationButton.style.display = 'inline';
