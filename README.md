@@ -1,10 +1,10 @@
-
 # ShareNow
 
 **Class:** SE214.I21 (Advanced Software Engineering)  
 **Lecturer:** MS. Nguyễn Công Hoan  
-**Project:** Web Application for sharing hilarious Teacher Test Comments  
 **Seminar Topic:** Progressive Web Apps (PWAs)  
+**Project:** Web Application for sharing hilarious Teacher Test Comments  
+**ShareNow on Heroku:** [https://sharenow.herokuapp.com](https://sharenow.herokuapp.com)
 
 ## Team Members
 
