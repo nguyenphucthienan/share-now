@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "ShareNow",
+  "name": "ShareNow",
   "icons": [
     {
       "src": "/resources/icons/32x32.png",
@@ -26,5 +26,5 @@
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#1e88e5",
-  "background_color": "#000000"
+  "background_color": "#ffffff"
 }
