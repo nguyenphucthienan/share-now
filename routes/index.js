@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const authController = require('../controllers/authController');
+const userController = require('../controllers/userController');
 const postController = require('../controllers/postController');
 const commentController = require('../controllers/commentController');
 const notificationController = require('../controllers/notificationController');
@@ -22,6 +23,13 @@ router.get(
 
 router.get('/logout', authController.logout);
 router.get('/me', authController.currentUser);
+
+router.get(
+  '/users',
+  requireLogin,
+  requireAdmin,
+  userController.getUsers
+);
 
 router.get('/posts', postController.getPosts);
 
