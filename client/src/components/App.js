@@ -13,6 +13,7 @@ import PostDetail from './posts/PostDetail';
 import AdminDashboard from './admin/AdminDashboard';
 import NotFound from './NotFound';
 import RequireAuth from './auth/requireAuth';
+import RequireAdmin from './auth/requireAdmin';
 
 class App extends Component {
   componentDidMount() {
@@ -32,7 +33,7 @@ class App extends Component {
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/posts/new" component={RequireAuth(PostNew)} />
                 <Route exact path="/posts/:id" component={PostDetail} />
-                <Route exact path="/admin" component={AdminDashboard} />
+                <Route exact path="/admin" component={RequireAdmin(AdminDashboard)} />
                 <Route exact path="/404" component={NotFound} />
                 <Redirect from="*" to="/404" />
               </Switch>

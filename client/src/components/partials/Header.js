@@ -80,21 +80,22 @@ class Header extends Component {
   }
 
   renderHeader() {
-    if (this.props.user) {
-      return [
-        <li key="1"><Link to="/dashboard">Dashboard</Link></li>,
-        <li key="2"><Link to="/about">About</Link></li>,
-        <li key="3"><a href="/api/logout">Logout</a></li>,
-        <li key="4"><a className="waves-effect waves-light deep-purple darken-4 btn" onClick={this.subscribePushNotification}>Subscribe</a></li>
-      ];
+    const buttons = [
+      <li key="dashboard"><Link to="/dashboard">Dashboard</Link></li>,
+      <li key="about"><Link to="/about">About</Link></li>,
+    ];
+
+    if (this.props.user && this.props.user.role === 1) {
+      buttons.push(<li key="admin"><Link to="/Admin">Admin</Link></li>)
+    } else if (this.props.user) {
+      buttons.push(<li key="logout"><a href="/api/logout">Logout</a></li>);
+    } else {
+      buttons.push(<li key="3"><a href="/api/login/google">Login</a></li>);
     }
 
-    return [
-      <li key="1"><Link to="/dashboard">Dashboard</Link></li>,
-      <li key="2"><Link to="/about">About</Link></li>,
-      <li key="3"><a href="/api/login/google">Login</a></li>,
-      <li key="4"><a className="waves-effect waves-light deep-purple darken-4 btn" onClick={this.subscribePushNotification}>Subscribe</a></li>
-    ];
+    buttons.push(<li key="subscribe"><a className="waves-effect waves-light deep-purple darken-4 btn" onClick={this.subscribePushNotification}>Subscribe</a></li>);
+
+    return buttons;
   }
 
   render() {
