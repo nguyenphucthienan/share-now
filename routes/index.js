@@ -6,6 +6,7 @@ const postController = require('../controllers/postController');
 const commentController = require('../controllers/commentController');
 const notificationController = require('../controllers/notificationController');
 const requireLogin = require('../middlewares/requireLogin');
+const requireAdmin = require('../middlewares/requireAdmin');
 
 router.get('/', (req, res) => {
   res.send({ hi: 'there' });
@@ -65,6 +66,12 @@ router.post(
 );
 
 router.post('/notifications/subscribe', notificationController.saveSubscription);
-router.post('/notifications/push', notificationController.pushNotification);
+
+router.post(
+  '/notifications/push',
+  requireLogin,
+  requireAdmin,
+  notificationController.pushNotification
+);
 
 module.exports = router;
