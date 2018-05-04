@@ -75,3 +75,7 @@ main {
 #location-button {
   margin-left: 15px;
 }
+
+.admin-button {
+  width: 100%;
+}
