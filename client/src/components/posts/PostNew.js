@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
 import NodeGeocoder from 'node-geocoder';
@@ -267,11 +266,7 @@ function validate(values) {
   return errors;
 }
 
-function mapStateToProps({ posts: { page } }) {
-  return { page };
-}
-
-export default connect(mapStateToProps)(reduxForm({
+export default reduxForm({
   form: 'postNew',
   validate
-})(PostNew));
+})(PostNew);

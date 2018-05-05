@@ -4,15 +4,14 @@ import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 class PostCard extends Component {
-  constructor(props) {
-    super(props);
-    const { _id: userId } = this.props.user;
+  componentWillMount() {
     const { hearts } = this.props.post;
+    this.setState({ numOfHearts: hearts.length });
 
-    this.state = {
-      isPostHearted: hearts.includes(userId),
-      numOfHearts: hearts.length
-    };
+    if (this.props.user) {
+      const { _id: userId } = this.props.user;
+      this.setState({ isPostHearted: hearts.includes(userId) });
+    }
   }
 
   async heartOrUnheartPost() {
@@ -83,8 +82,8 @@ class PostCard extends Component {
   }
 }
 
-function mapStateToProps({ user, posts: { page } }) {
-  return { user, page };
+function mapStateToProps({ user }) {
+  return { user };
 }
 
 export default connect(mapStateToProps)(withRouter(PostCard));
