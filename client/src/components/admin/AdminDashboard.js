@@ -32,7 +32,7 @@ class AdminDashboard extends Component {
                   to="/admin/user-list"
                   className="admin-button waves-effect waves-light btn-large purple darken-4"
                 >
-                  <i className="material-icons left">cloud</i>User List
+                  <i className="material-icons left">people</i>User List
                 </Link>
               </div>
             </div>

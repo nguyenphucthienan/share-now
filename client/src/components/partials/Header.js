@@ -85,12 +85,14 @@ class Header extends Component {
       <li key="about"><Link to="/about">About</Link></li>,
     ];
 
-    if (this.props.user && this.props.user.role === 1) {
-      buttons.push(<li key="admin"><Link to="/Admin">Admin</Link></li>)
-    } else if (this.props.user) {
+    if (this.props.user) {
       buttons.push(<li key="logout"><a href="/api/logout">Logout</a></li>);
     } else {
-      buttons.push(<li key="3"><a href="/api/login/google">Login</a></li>);
+      buttons.push(<li key="login"><a href="/api/login/google">Login</a></li>);
+    }
+
+    if (this.props.user && this.props.user.role === 1) {
+      buttons.push(<li key="admin"><Link className="waves-effect waves-light red darken-2 btn" to="/admin">Admin</Link></li>);
     }
 
     buttons.push(<li key="subscribe"><a className="waves-effect waves-light deep-purple darken-4 btn" onClick={this.subscribePushNotification}>Subscribe</a></li>);
