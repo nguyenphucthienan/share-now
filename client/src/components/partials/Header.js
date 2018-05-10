@@ -105,7 +105,7 @@ class Header extends Component {
       <header>
         <div className="navbar-fixed">
           <nav className="transparent-fixed">
-            <div className="nav-wrapper blue darken-1">
+            <div className="nav-wrapper">
               <Link to="/" className="brand-logo">
                 <i className="material-icons">face</i><span className="brand-title">ShareNow</span>
               </Link>

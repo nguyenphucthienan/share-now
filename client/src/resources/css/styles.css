@@ -17,6 +17,10 @@ html {
   height: 100vh;
 }
 
+.transparent-fixed {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .brand-logo {
   margin-left: 5px;
 }

@@ -36,7 +36,7 @@ class Landing extends Component {
     const { user } = this.props;
 
     return (
-      <div className="container center-align">
+      <div className="container center-align white-text">
         <h2>ShareNow</h2>
         <p className="flow-text">
           {user ? `Hi, ${user.displayName}!` : 'Hi there!'}
