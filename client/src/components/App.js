@@ -26,7 +26,7 @@ class App extends Component {
     return (
       <div>
         <BrowserRouter>
-          <div className="flex-wrapper">
+          <div className="background-image flex-wrapper">
             <Header />
             <main>
               <Switch>
