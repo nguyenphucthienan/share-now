@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import config from '../../config';
 import { fetchUsers } from '../../actions';
 
+import AdminUserCard from './AdminUserCard';
+
 class AdminUserList extends Component {
   componentDidMount() {
     document.title = `${config.appName} – Admin – User List`;
@@ -25,21 +27,7 @@ class AdminUserList extends Component {
 
   renderUsers() {
     if (this.props.usersData) {
-      return this.props.usersData.map((user) => {
-        const { displayName, email, role } = user;
-
-        return (
-          <li key={email} className="collection-item avatar">
-            <span className="title card-content-title">{displayName}</span>
-            <p>{email}<br />{role === 1 ? 'Admin' : 'User'}</p>
-            <p className="secondary-content">
-              <i className="material-icons indigo-text text-darken-2">
-                {role === 1 ? 'verified_user' : 'grade'}
-              </i>
-            </p>
-          </li>
-        );
-      });
+      return this.props.usersData.map(user => (<AdminUserCard key={user.email} user={user} />));
     }
 
     return <div />;
