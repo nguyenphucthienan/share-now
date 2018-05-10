@@ -31,13 +31,13 @@ class PostDetail extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.post) {
-      const { _id: userId } = this.props.user;
       const { hearts } = nextProps.post;
+      this.setState({ numOfHearts: hearts.length });
 
-      this.setState({
-        isPostHearted: hearts.includes(userId),
-        numOfHearts: hearts.length
-      });
+      if (this.props.user) {
+        const { _id: userId } = this.props.user;
+        this.setState({ isPostHearted: hearts.includes(userId) });
+      }
     }
   }
 

@@ -9,13 +9,12 @@ import TextAreaField from '../forms/TextAreaField';
 
 class PushNotificationNew extends Component {
   componentDidMount() {
-    document.title = `${config.appName} – New Push Notification`;
+    document.title = `${config.appName} – Admin – New Push Notification`;
   }
 
   async sendPushNotification(values) {
     try {
-      const response = await axios.post('/api/notifications/push', values);
-      console.log('response', response);
+      await axios.post('/api/notifications/push', values);
       this.props.history.push('/admin');
     } catch (err) {
       console.log(err);

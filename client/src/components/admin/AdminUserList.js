@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import config from '../../config';
 import { fetchUsers } from '../../actions';
 
 class AdminUserList extends Component {
   componentDidMount() {
+    document.title = `${config.appName} – Admin – User List`;
     this.props.fetchUsers();
   }
 
