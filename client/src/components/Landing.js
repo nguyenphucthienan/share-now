@@ -14,7 +14,7 @@ class Landing extends Component {
         <Link
           key="1"
           to="/dashboard"
-          className="waves-effect waves-light btn green accent-3"
+          className="waves-effect waves-light btn green darken-1"
         >
           <i className="material-icons left">arrow_forward</i>Go to Dashboard
         </Link>
