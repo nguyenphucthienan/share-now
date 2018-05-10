@@ -134,7 +134,7 @@ class PostDetail extends Component {
       } = this.props.post;
 
       return (
-        <div className="container">
+        <div className="container white-text">
           <div className="row">
             <div className="col s12 m8 offset-m2 l6 offset-l3">
               <div className="row">
@@ -142,13 +142,13 @@ class PostDetail extends Component {
                   <h4 className="center-align">{title}</h4>
                 </div>
               </div>
-              <div className="card row">
+              <div className="card row transparent-background">
                 <div className="col s12 center-align image-detail">
                   <img className="responsive-img" src={image} alt={title} />
                   {this.renderHeartButton()}
                 </div>
               </div>
-              <div className="card row">
+              <div className="card row transparent-background">
                 <div className="col s12">
                   <p>
                     <i className="material-icons">location_on</i>
@@ -157,7 +157,7 @@ class PostDetail extends Component {
                   </p>
                 </div>
               </div>
-              <div className="card row">
+              <div className="card row transparent-background">
                 <div className="col s12">
                   <p>
                     <i className="material-icons">favorite</i>
