@@ -47,7 +47,7 @@ class AdminUserList extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container white-text">
         <div className="row">
           <div className="col s12 m8 offset-m2 l6 offset-l3">
             <h2 className="center-align">User List</h2>
