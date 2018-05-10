@@ -21,6 +21,10 @@ html {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.transparent-background {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
 .brand-logo {
   margin-left: 5px;
 }

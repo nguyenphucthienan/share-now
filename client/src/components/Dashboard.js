@@ -50,7 +50,7 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container white-text">
         <h2 className="center-align">Dashboard</h2>
         <PostList />
         <PostPagination />

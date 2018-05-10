@@ -15,7 +15,7 @@ class PostPagination extends Component {
         className={`${isFirstPage ? 'disabled' : 'waves-effect'}`}
         onClick={isFirstPage ? () => { } : () => this.props.fetchPosts(currentPage - 1)}
       >
-        <a><i className="material-icons">chevron_left</i></a>
+        <a className="white-text"><i className="material-icons">chevron_left</i></a>
       </li>
     ));
 
@@ -23,10 +23,10 @@ class PostPagination extends Component {
       buttons.push((
         <li
           key={i}
-          className={`waves-effect ${currentPage === i ? 'active blue darken-1' : ''}`}
+          className={`waves-effect ${currentPage === i ? 'active white' : ''}`}
           onClick={() => this.props.fetchPosts(i)}
         >
-          <a>{i}</a>
+          <a className={`${currentPage === i ? 'black-text' : 'white-text'}`}>{i}</a>
         </li >
       ));
     }
@@ -34,10 +34,10 @@ class PostPagination extends Component {
     buttons.push((
       <li
         key="next"
-        className={`${isLastPage ? 'disabled' : 'waves-effect'}`}
+        className={`${isLastPage ? 'disabled ' : 'waves-effect'}`}
         onClick={isLastPage ? () => { } : () => this.props.fetchPosts(currentPage + 1)}
       >
-        <a><i className="material-icons">chevron_right</i></a>
+        <a className="white-text"><i className="material-icons">chevron_right</i></a>
       </li>
     ));
 
