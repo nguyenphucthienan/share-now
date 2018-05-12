@@ -28,9 +28,8 @@ exports.cloudinaryUpload = (req, res) => {
     const dataUri = new Datauri();
     dataUri.format('.png', req.file.buffer);
 
-    return cloudinary.uploader.upload(dataUri.content, (result) => {
-      return res.send({ url: result.secure_url });
-    });
+    return cloudinary.uploader
+      .upload(dataUri.content, result => res.send({ url: result.secure_url }));
   });
 };
 
@@ -73,7 +72,7 @@ exports.getMyPosts = async (req, res) => {
   const offset = parseInt(req.query.offset, 10) || 5;
 
   try {
-    const countPromise = Post.count({});
+    const countPromise = Post.count({ author: userId });
     const postsPromise = Post
       .find({
         author: userId
