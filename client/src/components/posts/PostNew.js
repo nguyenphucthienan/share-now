@@ -218,7 +218,7 @@ class PostNew extends Component {
                 />
                 <div className="row center-align">
                   <div className="col s12">
-                    <button type="submit" className="btn waves-effect waves-light green darken-1 center-align">
+                    <button type="submit" className="btn waves-effect waves-light green accent-4 center-align">
                       <i className="material-icons left">done</i>Post
                     </button>
                     <button type="button" className="btn waves-effect waves-light red center-align" id="location-button" onClick={() => this.onGetLocation()}>
