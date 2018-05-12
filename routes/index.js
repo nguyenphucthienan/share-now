@@ -32,6 +32,7 @@ router.get(
 );
 
 router.get('/posts', postController.getPosts);
+router.get('/posts/my-posts', postController.getMyPosts);
 
 router.post(
   '/posts',

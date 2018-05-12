@@ -67,6 +67,42 @@ exports.getPosts = async (req, res) => {
   }
 };
 
+exports.getMyPosts = async (req, res) => {
+  const { id: userId } = req.user;
+  const page = Math.max(0, parseInt(req.query.page - 1, 10));
+  const offset = parseInt(req.query.offset, 10) || 5;
+
+  try {
+    const countPromise = Post.count({});
+    const postsPromise = Post
+      .find({
+        author: userId
+      })
+      .sort({
+        createdAt: -1
+      })
+      .populate('comments')
+      .skip(page * offset)
+      .limit(offset)
+      .exec();
+
+    const data = await Promise.all([
+      countPromise,
+      postsPromise
+    ]);
+
+    const returnData = {
+      totalPages: Math.ceil(data[0] / offset),
+      page: page + 1,
+      postsData: data[1]
+    };
+
+    return res.send(returnData);
+  } catch (err) {
+    return res.status(422).send(err);
+  }
+};
+
 exports.getPost = async (req, res) => {
   const { postId } = req.params;
 
