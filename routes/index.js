@@ -32,7 +32,12 @@ router.get(
 );
 
 router.get('/posts', postController.getPosts);
-router.get('/posts/my-posts', postController.getMyPosts);
+
+router.get(
+  '/posts/my-posts',
+  requireLogin,
+  postController.getMyPosts
+);
 
 router.post(
   '/posts',
