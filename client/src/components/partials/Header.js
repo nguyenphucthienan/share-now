@@ -81,15 +81,17 @@ class Header extends Component {
 
   renderHeader() {
     const buttons = [
-      <li key="dashboard"><Link to="/dashboard">Dashboard</Link></li>,
-      <li key="about"><Link to="/about">About</Link></li>,
+      <li key="dashboard"><Link to="/dashboard">Dashboard</Link></li>
     ];
 
     if (this.props.user) {
+      buttons.push(<li key="my-posts"><Link to="/my-posts">My Posts</Link></li>);
       buttons.push(<li key="logout"><a href="/api/logout">Logout</a></li>);
     } else {
       buttons.push(<li key="login"><a href="/api/login/google">Login</a></li>);
     }
+
+    buttons.push(<li key="about"><Link to="/about">About</Link></li>);
 
     if (this.props.user && this.props.user.role === 1) {
       buttons.push(<li key="admin"><Link className="waves-effect waves-light red darken-2 btn" to="/admin">Admin</Link></li>);
