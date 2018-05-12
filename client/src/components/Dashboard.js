@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchPosts, clearPosts } from '../actions';
 import { Link } from 'react-router-dom';
 import config from '../config';
 
@@ -10,6 +12,7 @@ let deferredPrompt;
 class Dashboard extends Component {
   componentDidMount() {
     document.title = `${config.appName} – Dashboard`;
+    this.props.fetchPosts(this.props.page || 1);
 
     window.addEventListener('beforeinstallprompt', (event) => {
       console.log('beforeinstallprompt fired');
@@ -35,6 +38,10 @@ class Dashboard extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.clearPosts();
+  }
+
   renderNewButton() {
     return (
       <div className="fixed-action-btn">
@@ -52,7 +59,7 @@ class Dashboard extends Component {
     return (
       <div className="container white-text">
         <h2 className="center-align">Dashboard</h2>
-        <PostList />
+        <PostList posts={this.props.postsData} />
         <PostPagination />
         {this.renderNewButton()}
       </div>
@@ -60,4 +67,11 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+function mapStateToProps({ posts: { page, postsData } }) {
+  return { page, postsData };
+}
+
+export default connect(mapStateToProps, {
+  fetchPosts,
+  clearPosts
+})(Dashboard);

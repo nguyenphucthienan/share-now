@@ -1,21 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchPosts, clearPosts } from '../../actions';
 
 import PostCard from './PostCard';
 
 class PostList extends Component {
-  componentDidMount() {
-    this.props.fetchPosts(this.props.page || 1);
-  }
-
-  componentWillUnmount() {
-    this.props.clearPosts();
-  }
-
   renderPosts() {
-    if (this.props.postsData) {
-      return this.props.postsData.map(post => (
+    if (this.props.posts) {
+      return this.props.posts.map(post => (
         <PostCard
           key={post._id}
           post={post}
@@ -37,11 +27,4 @@ class PostList extends Component {
   }
 }
 
-function mapStateToProps({ posts: { page, postsData } }) {
-  return { page, postsData };
-}
-
-export default connect(mapStateToProps, {
-  fetchPosts,
-  clearPosts
-})(PostList);
+export default PostList;
