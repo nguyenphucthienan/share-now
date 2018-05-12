@@ -8,6 +8,7 @@ import Footer from './partials/Footer';
 import About from './About';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
+import MyPostDashboard from './MyPostDashboard';
 import PostNew from './posts/PostNew';
 import PostDetail from './posts/PostDetail';
 import AdminDashboard from './admin/AdminDashboard';
@@ -33,7 +34,7 @@ class App extends Component {
                 <Route exact path="/" component={Landing} />
                 <Route exact path="/about" component={About} />
                 <Route exact path="/dashboard" component={Dashboard} />
-                <Route exact path="/my-posts" component={RequireAuth(Dashboard)} />
+                <Route exact path="/my-posts" component={RequireAuth(MyPostDashboard)} />
                 <Route exact path="/posts/new" component={RequireAuth(PostNew)} />
                 <Route exact path="/posts/:id" component={PostDetail} />
                 <Route exact path="/admin" component={RequireAdmin(AdminDashboard)} />
