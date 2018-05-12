@@ -60,15 +60,15 @@ class Dashboard extends Component {
       <div className="container white-text">
         <h2 className="center-align">Dashboard</h2>
         <PostList posts={this.props.postsData} />
-        <PostPagination />
+        <PostPagination totalPages={this.props.totalPages} page={this.props.page} />
         {this.renderNewButton()}
       </div>
     );
   }
 }
 
-function mapStateToProps({ posts: { page, postsData } }) {
-  return { page, postsData };
+function mapStateToProps({ posts: { postsData, totalPages, page } }) {
+  return { postsData, totalPages, page };
 }
 
 export default connect(mapStateToProps, {

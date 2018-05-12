@@ -59,10 +59,4 @@ class PostPagination extends Component {
   }
 }
 
-function mapStateToProps({ posts: { totalPages, page } }) {
-  return { totalPages, page };
-}
-
-export default connect(mapStateToProps, {
-  fetchPosts
-})(PostPagination);
+export default connect(null, { fetchPosts })(PostPagination);
