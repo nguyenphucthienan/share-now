@@ -60,7 +60,11 @@ class Dashboard extends Component {
       <div className="container white-text">
         <h2 className="center-align">Dashboard</h2>
         <PostList posts={this.props.postsData} />
-        <PostPagination totalPages={this.props.totalPages} page={this.props.page} />
+        <PostPagination
+          totalPages={this.props.totalPages}
+          page={this.props.page}
+          fetchPosts={this.props.fetchPosts}
+        />
         {this.renderNewButton()}
       </div>
     );

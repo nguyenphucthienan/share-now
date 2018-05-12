@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchPosts } from '../../actions';
 
 class PostPagination extends Component {
   renderPageButtons(totalPages) {
@@ -59,4 +57,4 @@ class PostPagination extends Component {
   }
 }
 
-export default connect(null, { fetchPosts })(PostPagination);
+export default PostPagination;
