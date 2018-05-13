@@ -17,6 +17,17 @@
 ## Technical Stack
 This is our final project for Advanced Software Engineering class at University of Information Technology. It was developed using the MERN stack (MongoDB, Express, React, and Node,js) with some Progressive Web Apps features.
 
+### Dependencies
+|Dependency    |Version |
+|--------------|--------|
+|Node.js       |8.9.4   |
+|npm           |6.0.0   |
+|Express       |4.16.3  |
+|MongoDB       |3.4.14  |
+|Mongoose      |5.0.12  |
+|React         |16.3.0  |
+|Redux         |3.7.2   |
+
 ### Server-side:
 
 #### Node.js
@@ -62,14 +73,14 @@ Non-business
 
 **Not includes:**
 - Security of user information 
-- Share posts to social networking sites such as Facebook, Twitter.
-- User interactions, like following friends.
+- Share posts to social networking sites such as Facebook, Twitter
+- User interactions, like following friends
 
 #### 2. Completion Criteria
 - Post as an anonymous
 - Access camera to take new pictures
 - Access location
 - Choose photos from library and enter the location manually
-- User-interacting through comments and reactions (like, love, wow, …)
+- User-interacting through comments and reactions
 - Rate posts via interactive numbers
-- Informative notifications, ensures that users will not miss any new posts.
+- Informative notifications, ensures that users will not miss any new posts
