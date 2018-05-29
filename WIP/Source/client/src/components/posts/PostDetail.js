@@ -71,7 +71,7 @@ class PostDetail extends Component {
     try {
       const { _id: postId } = this.props.post;
       await axios.delete(`/api/posts/${postId}`);
-      this.props.history.push('/dashboard');
+      this.props.history.push('/');
     } catch (err) {
       console.log(err);
     }
@@ -134,12 +134,12 @@ class PostDetail extends Component {
       } = this.props.post;
 
       return (
-        <div className="container white-text">
+        <div className="container">
           <div className="row">
             <div className="col s12 m8 offset-m2 l6 offset-l3">
               <div className="row">
                 <div className="col s12">
-                  <h4 className="center-align">{title}</h4>
+                  <h4 className="center-align white-text">{title}</h4>
                 </div>
               </div>
               <div className="card row transparent-background">

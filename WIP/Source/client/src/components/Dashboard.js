@@ -57,8 +57,8 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div className="container white-text">
-        <h2 className="center-align">Dashboard</h2>
+      <div className="container">
+        <h2 className="center-align white-text">Dashboard</h2>
         <PostList posts={this.props.postsData} />
         <PostPagination
           totalPages={this.props.totalPages}

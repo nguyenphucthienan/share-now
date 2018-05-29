@@ -21,4 +21,3 @@ yarn-debug.log*
 yarn-error.log*
 
 /src/config/development.js
-/src/config/production.js

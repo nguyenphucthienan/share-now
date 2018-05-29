@@ -9,7 +9,7 @@ class AdminUserCard extends Component {
         <span className="title card-content-title">{displayName}</span>
         <p>{email}<br />{role === 1 ? 'Admin' : 'User'}</p>
         <p className="secondary-content">
-          <i className="material-icons white-text">
+          <i className="material-icons">
             {role === 1 ? 'verified_user' : 'grade'}
           </i>
         </p>
