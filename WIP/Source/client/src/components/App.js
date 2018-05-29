@@ -6,7 +6,6 @@ import { fetchUser } from '../actions';
 import Header from './partials/Header';
 import Footer from './partials/Footer';
 import About from './About';
-import Landing from './Landing';
 import Dashboard from './Dashboard';
 import MyPostDashboard from './MyPostDashboard';
 import PostNew from './posts/PostNew';
@@ -31,9 +30,8 @@ class App extends Component {
             <Header />
             <main>
               <Switch>
-                <Route exact path="/" component={Landing} />
+                <Route exact path="/" component={Dashboard} />
                 <Route exact path="/about" component={About} />
-                <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/my-posts" component={RequireAuth(MyPostDashboard)} />
                 <Route exact path="/posts/new" component={RequireAuth(PostNew)} />
                 <Route exact path="/posts/:id" component={PostDetail} />

@@ -11,7 +11,7 @@ class AdminDashboard extends Component {
     return (
       <div className="fixed-action-btn" >
         <Link
-          to="/dashboard"
+          to="/"
           className="waves-effect waves-light btn btn-floating btn-large indigo darken-2 pulse"
         >
           <i className="material-icons">arrow_back</i>

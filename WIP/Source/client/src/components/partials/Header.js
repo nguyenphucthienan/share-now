@@ -81,7 +81,7 @@ class Header extends Component {
 
   renderHeader() {
     const buttons = [
-      <li key="dashboard"><Link to="/dashboard">Dashboard</Link></li>
+      <li key="dashboard"><Link to="/">Dashboard</Link></li>
     ];
 
     if (this.props.user) {
@@ -89,8 +89,8 @@ class Header extends Component {
       buttons.push(<li key="about"><Link to="/about">About</Link></li>);
       buttons.push(<li key="logout"><a href="/api/logout">Logout</a></li>);
     } else {
-      buttons.push(<li key="login"><a href="/api/login/google">Login</a></li>);
       buttons.push(<li key="about"><Link to="/about">About</Link></li>);
+      buttons.push(<li key="login"><a href="/api/login/google">Login</a></li>);
     }
 
     if (this.props.user && this.props.user.role === 1) {
