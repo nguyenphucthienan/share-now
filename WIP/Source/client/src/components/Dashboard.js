@@ -43,16 +43,20 @@ class Dashboard extends Component {
   }
 
   renderNewButton() {
-    return (
-      <div className="fixed-action-btn">
-        <Link
-          to="/posts/new"
-          className="waves-effect waves-light btn btn-floating btn-large indigo darken-2 pulse"
-        >
-          <i className="material-icons">add</i>
-        </Link>
-      </div>
-    );
+    if (this.props.user) {
+      return (
+        <div className="fixed-action-btn">
+          <Link
+            to="/posts/new"
+            className="waves-effect waves-light btn btn-floating btn-large indigo darken-2 pulse"
+          >
+            <i className="material-icons">add</i>
+          </Link>
+        </div>
+      );
+    }
+
+    return <div />;
   }
 
   render() {
@@ -71,8 +75,8 @@ class Dashboard extends Component {
   }
 }
 
-function mapStateToProps({ posts: { postsData, totalPages, page } }) {
-  return { postsData, totalPages, page };
+function mapStateToProps({ user, posts: { postsData, totalPages, page } }) {
+  return { user, postsData, totalPages, page };
 }
 
 export default connect(mapStateToProps, {
