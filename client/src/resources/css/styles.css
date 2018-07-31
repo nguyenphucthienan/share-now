@@ -8,27 +8,6 @@ main {
   flex: 1 0 auto;
 }
 
-html {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(hsla(0, 0%, 0%, 0.65)), to(rgba(0, 0, 0, 0.65))), url(../img/background.jpg);
-  background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url(../img/background.jpg);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  height: 100vh;
-}
-
-.card {
-  border-radius: 15px;
-}
-
-.transparent-fixed {
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-.transparent-background {
-  background-color: rgba(255, 255, 255, 0.7) !important;
-}
-
 .brand-logo {
   margin-left: 5px;
 }
@@ -51,7 +30,7 @@ html {
 }
 
 .image-cover {
-  padding: 10px 10px 0px 10px;
+  padding: 0;
   height: 230px;
   max-height: 230px;
   object-fit: cover;

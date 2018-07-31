@@ -38,7 +38,7 @@ class AdminUserList extends Component {
       <div className="container">
         <div className="row">
           <div className="col s12 m8 offset-m2 l6 offset-l3">
-            <h2 className="center-align white-text">User List</h2>
+            <h2 className="center-align">User List</h2>
             <ul className="collection">
               {this.renderUsers()}
             </ul>

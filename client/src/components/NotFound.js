@@ -8,7 +8,7 @@ class NotFound extends Component {
 
   render() {
     return (
-      <div className="container center-align white-text">
+      <div className="container center-align">
         <h2>404</h2>
         <p className="flow-text">Page Not Found</p>
       </div>

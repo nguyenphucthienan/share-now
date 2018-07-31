@@ -5,7 +5,7 @@ class AdminUserCard extends Component {
     const { displayName, email, role } = this.props.user;
 
     return (
-      <li className="collection-item avatar transparent-background">
+      <li className="collection-item avatar">
         <span className="title card-content-title">{displayName}</span>
         <p>{email}<br />{role === 1 ? 'Admin' : 'User'}</p>
         <p className="secondary-content">

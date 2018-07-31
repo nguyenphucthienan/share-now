@@ -22,7 +22,7 @@ class AdminDashboard extends Component {
 
   render() {
     return (
-      <div className="container center-align white-text">
+      <div className="container center-align">
         <div className="row">
           <div className="col s10 offset-s1 m6 offset-m3 l4 offset-l4">
             <h2>Admin</h2>

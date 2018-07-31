@@ -9,7 +9,7 @@ class CommentSection extends Component {
     const { postId, comments } = this.props;
 
     return (
-      <div className="card row transparent-background">
+      <div className="card row">
         <div className="col s12">
           <div className="row">
             <div className="col s12">

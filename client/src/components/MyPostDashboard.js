@@ -32,7 +32,7 @@ class MyPostDashboard extends Component {
 
   render() {
     return (
-      <div className="container white-text">
+      <div className="container">
         <h2 className="center-align">My Posts</h2>
         <PostList posts={this.props.postsData} />
         <PostPagination

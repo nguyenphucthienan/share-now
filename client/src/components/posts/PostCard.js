@@ -61,8 +61,8 @@ class PostCard extends Component {
 
     return (
       <div className="col s12 m6 l4">
-        <div className="card transparent-background">
-          <div className="card-image">
+        <div className="card">
+          <div className="card-image z-depth-3">
             <img className="image-cover" src={image} alt={title} />
             <Link to={`/posts/${postId}`}>
               <span className="card-title dark-background">{title}</span>

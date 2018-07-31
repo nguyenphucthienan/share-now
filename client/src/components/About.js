@@ -8,7 +8,7 @@ class About extends Component {
 
   render() {
     return (
-      <div className="container center-align white-text">
+      <div className="container center-align">
         <h2>About</h2>
         <p className="flow-text">A Web Application for sharing hilarious Teacher Test Comments</p>
         <p className="flow-text">Built using a MERN stack</p>
